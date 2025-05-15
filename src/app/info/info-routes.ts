@@ -15,9 +15,12 @@ import {
   END_USER_AGREEMENT_PATH,
   FEEDBACK_PATH,
   PRIVACY_PATH,
+  CONTACTUS_PATH,
+  ABOUT_PATH,
 } from './info-routing-paths';
 import { NotifyInfoComponent } from './notify-info/notify-info.component';
 import { ThemedPrivacyComponent } from './privacy/themed-privacy.component';
+import { ThemedAboutComponent } from './about/themed-about.component';
 
 
 export const ROUTES: Routes = [
@@ -27,6 +30,12 @@ export const ROUTES: Routes = [
     resolve: { breadcrumb: i18nBreadcrumbResolver },
     data: { title: 'info.feedback.title', breadcrumbKey: 'info.feedback' },
     canActivate: [feedbackGuard],
+  },
+  {
+    path: ABOUT_PATH,
+    component: ThemedAboutComponent,
+    resolve: { breadcrumb: i18nBreadcrumbResolver },
+    data: { title: 'info.about.title', breadcrumbKey: 'info.about' },
   },
   environment.info.enableEndUserAgreement ? {
     path: END_USER_AGREEMENT_PATH,

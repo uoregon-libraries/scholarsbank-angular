@@ -6,7 +6,7 @@
     div#header-navbar-wrapper {
       // The header-navbar-wrapper should not have a z-index, otherwise it would cover the media viewer despite its higher z-index
       position: relative; // required by the mobile collapsible navbar
-      border-bottom: var(--ds-header-navbar-border-bottom-style); // gets covered by mobile navbar wrapper, when open
+      border-bottom: 5px var(--ds-header-navbar-border-bottom-color) solid; // gets covered by mobile navbar wrapper, when open
   
       div#mobile-navbar-wrapper {
         width: 100%;

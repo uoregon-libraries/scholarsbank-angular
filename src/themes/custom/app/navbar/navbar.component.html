@@ -4,8 +4,14 @@
   </ng-container>
   <div class="navbar-nav h-100 align-items-md-stretch gapx-3" role="menubar" id="main-site-navigation" [ngClass]="(isMobile$ | async) ? 'navbar-nav-mobile' : 'navbar-nav-desktop'">
     <ng-container *ngFor="let section of (sections | async)">
-      <ng-container
-        *ngComponentOutlet="(sectionMap$ | async).get(section.id)?.component; injector: (sectionMap$ | async).get(section.id)?.injector;"></ng-container>
+      <ng-container *ngIf="section.id!=='statistics_site'">
+        <ng-container *ngComponentOutlet="(sectionMap$ | async).get(section.id)?.component; injector: (sectionMap$ | async).get(section.id)?.injector;"></ng-container>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngFor="let section of (sections | async)">
+      <ng-container *ngIf="section.id==='statistics_site'">
+        <ng-container *ngComponentOutlet="(sectionMap$ | async).get(section.id)?.component; injector: (sectionMap$ | async).get(section.id)?.injector;"></ng-container>
+      </ng-container>
     </ng-container>
   </div>
   <ds-search-navbar class="navbar-collapsed ml-auto"></ds-search-navbar>

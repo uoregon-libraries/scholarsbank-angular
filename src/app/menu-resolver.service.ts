@@ -102,13 +102,46 @@ export class MenuResolverService  {
       {
         id: `browse_global_communities_and_collections`,
         active: false,
-        visible: true,
+        visible: false,
         index: 0,
         model: {
           type: MenuItemType.LINK,
           text: `menu.section.browse_global_communities_and_collections`,
           link: `/community-list`,
         } as LinkMenuItemModel,
+      },
+      {
+        id: `browse_global_about`,
+        active: false,
+        visible: true,
+        index: 3,
+        model: {
+          type: MenuItemType.LINK,
+          text: `menu.section.browse_global_about`,
+          link: `info/about`
+        } as LinkMenuItemModel
+      },      
+      {
+        id: `browse_global_author_profiles`,
+        active: false,
+        visible: false,
+        index: 4,
+        model: {
+          type: MenuItemType.LINK,
+          text: `menu.section.browse_global_author_profiles`,
+          link: `/`
+        } as LinkMenuItemModel
+      },
+      {
+        id: `browse_global_contactus`,
+        active: false,
+        visible: true,
+        index: 5,
+        model: {
+          type: MenuItemType.LINK,
+          text: `menu.section.browse_global_contactus`,
+          link: `info/contactus`
+        } as LinkMenuItemModel
       },
     ];
     // Read the different Browse-By types from config and add them to the browse menu
@@ -117,17 +150,19 @@ export class MenuResolverService  {
       .subscribe((browseDefListRD: RemoteData<PaginatedList<BrowseDefinition>>) => {
         if (browseDefListRD.hasSucceeded) {
           browseDefListRD.payload.page.forEach((browseDef: BrowseDefinition) => {
-            menuList.push({
-              id: `browse_global_by_${browseDef.id}`,
-              parentID: 'browse_global',
-              active: false,
-              visible: true,
-              model: {
-                type: MenuItemType.LINK,
-                text: `menu.section.browse_global_by_${browseDef.id}`,
-                link: `/browse/${browseDef.id}`,
-              } as LinkMenuItemModel,
-            });
+            if (browseDef.id !== 'dateissued' && browseDef.id !== 'author' && browseDef.id !== 'title') {
+              menuList.push({
+                id: `browse_global_by_${browseDef.id}`,
+                parentID: 'browse_global',
+                active: false,
+                visible: true,
+                model: {
+                  type: MenuItemType.LINK,
+                  text: `menu.section.browse_global_by_${browseDef.id}`,
+                  link: `/browse/${browseDef.id}`,
+                } as LinkMenuItemModel,
+              });
+            }
           });
           menuList.push(
             /* Browse */

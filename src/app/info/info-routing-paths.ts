@@ -23,6 +23,10 @@ export function getCOARNotifySupportPath(): string {
   return getSubPath(COAR_NOTIFY_SUPPORT);
 }
 
+export function getContactUsPath() {
+  return getSubPath(CONTACTUS_PATH);
+}
+
 export function getAboutPath() {
   return getSubPath(ABOUT_PATH);
 }

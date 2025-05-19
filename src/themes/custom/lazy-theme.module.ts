@@ -104,6 +104,7 @@ import { WorkflowItemDeleteComponent } from './app/workflowitems-edit-page/workf
 import { WorkflowItemSendBackComponent } from './app/workflowitems-edit-page/workflow-item-send-back/workflow-item-send-back.component';
 import { WorkspaceItemsDeletePageComponent } from './app/workspaceitems-edit-page/workspaceitems-delete-page/workspaceitems-delete-page.component';
 
+import { ContactusComponent } from './app/info/contactus/contactus.component';
 import { AboutComponent } from './app/info/about/about.component';
 
 const DECLARATIONS = [
@@ -198,6 +199,7 @@ const DECLARATIONS = [
   SubmissionUploadFilesComponent,
   ComcolPageContentComponent,
   SearchResultsSkeletonComponent,
+  ContactusComponent,
   AboutComponent,
 ];
 

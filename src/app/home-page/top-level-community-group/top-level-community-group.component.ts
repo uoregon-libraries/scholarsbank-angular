@@ -92,7 +92,6 @@ export class TopLevelCommunityGroupComponent implements OnInit, OnDestroy {
     ];
 
     this.items$ = of(items);
-    console.log(items);
   }
 
 

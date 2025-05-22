@@ -1,0 +1,64 @@
+// temporary fix for bootstrap 4 beta btn color issue
+.btn-secondary {
+    background-color: var(--bs-input-bg);
+    color: var(--bs-input-color);
+}
+
+.scope-button {
+    max-width: var(--ds-search-form-scope-max-width);
+}
+  
+:host {  
+    #home-container {
+        max-width: 100vw;
+        padding: 0;
+    }
+
+    .background-image {
+        position: relative;
+        width: 100%;
+        height: 60vh;
+        @media (max-width: 767px) {
+        background-image: url('/assets/custom/images/uo-lib-tall.jpg');
+        }
+        @media (min-width: 768px) and (max-width: 1023px) {
+        background-image: url('/assets/custom/images/uo-lib.jpg');
+        }
+        @media (min-width: 1024px) {
+        background-image: url('/assets/custom/images/uo-lib.jpg');
+        }
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: calc(var(--ds-content-spacing) * -1);
+    }
+
+    .overlay {
+        width: 70%;
+        height: 50%;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align:center;
+        color: white;
+        padding: 20px;
+        box-sizing: border-box;
+        // border-radius: 25px;
+        margin-top: -5px;
+    }
+
+    .overlay h1 {
+        font-weight: 800;
+        margin-top: -10px;
+        margin-bottom: 10px;
+    }
+
+    .search-container {
+        display: flex;
+        align-items: center;
+    }
+}

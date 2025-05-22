@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-3 text-center mb-4" *ngFor="let item of items$ | async">
+      <a href="{{ item.uuid }}">
+        <div class="icon-box">
+          <!-- <i [class]="item.icon"></i> -->
+          <img src="assets/images/{{ item.icon }}" alt="{{ item.label }}">
+          <h5 class="border-button united-Serif-regular">{{ item.label }}</h5>
+        </div>
+        <!-- <div class="label-container">
+          <span class="label">{{ item.label }}</span>
+        </div> -->
+      </a>
+    </div>
+  </div>
+  <div class="row justify-content-center browse-all-adjust united-Serif-regular">
+    <div class="col-md-4 text-center">
+      <a href="/community-list">
+        <button class="btn btn-success">Browse All</button>
+      </a>
+    </div>
+  </div>
+</div>

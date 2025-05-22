@@ -1,0 +1,33 @@
+// temporary fix for bootstrap 4 beta btn color issue
+.btn-secondary {
+    background-color: var(--bs-input-bg);
+    color: var(--bs-input-color);
+  }
+  
+  .scope-button {
+    max-width: var(--ds-search-form-scope-max-width);
+  }
+
+:host-context(#home-page-search-form) {
+    .form-control {
+        // width: 100%;
+        padding: 10px;
+        border: none;
+        // border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    .search-button {
+         // padding: 10px;
+         background-color: #f7f9fb;
+         color: black;
+         border: none;
+         // border-radius: 5px;
+         cursor: pointer;
+         margin-left: -0.5rem;
+         font-family: 'United Serif';
+         font-weight: normal;
+    }
+}
+
+  

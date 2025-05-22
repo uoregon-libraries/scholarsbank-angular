@@ -35,6 +35,8 @@ export class ThemedSearchFormComponent extends ThemedComponent<SearchFormCompone
   @Input() brandColor: string;
 
   @Input() searchPlaceholder: string;
+  
+  @Input() homePlaceholder: string;
 
   @Input() showScopeSelector: boolean;
 
@@ -49,6 +51,7 @@ export class ThemedSearchFormComponent extends ThemedComponent<SearchFormCompone
     'large',
     'brandColor',
     'searchPlaceholder',
+    'homePlaceholder',
     'showScopeSelector',
     'submitSearch',
   ];

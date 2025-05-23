@@ -103,15 +103,15 @@ export class ComcolPageBrowseByComponent implements OnDestroy, OnInit {
             });
           } else if (this.contentType === 'community') {
             comColRoute = getCommunityPageRoute(this.id);
-            allOptions.push({
-              id: 'search',
-              label: 'collection.page.browse.search.head',
-              routerLink: comColRoute,
-            });
+            // allOptions.push({
+            //   id: 'search',
+            //   label: 'collection.page.browse.search.head',
+            //   routerLink: comColRoute,
+            // });
             allOptions.push({
               id: 'comcols',
               label: 'community.all-lists.head',
-              routerLink: `${comColRoute}/subcoms-cols`,
+              routerLink: comColRoute,
             });
           }
 

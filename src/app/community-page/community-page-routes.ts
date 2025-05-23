@@ -73,19 +73,19 @@ export const ROUTES: Route[] = [
           menu: dsoEditMenuResolver,
         },
         children: [
+          // {
+          //   path: '',
+          //   pathMatch: 'full',
+          //   component: ComcolSearchSectionComponent,
+          // },
           {
             path: '',
             pathMatch: 'full',
-            component: ComcolSearchSectionComponent,
-          },
-          {
-            path: 'subcoms-cols',
-            pathMatch: 'full',
             component: SubComColSectionComponent,
-            resolve: {
-              breadcrumb: i18nBreadcrumbResolver,
-            },
-            data: { breadcrumbKey: 'community.subcoms-cols' },
+            // resolve: {
+            //   breadcrumb: i18nBreadcrumbResolver,
+            // },
+            // data: { breadcrumbKey: 'community.subcoms-cols' },
           },
           {
             path: 'browse/:id',

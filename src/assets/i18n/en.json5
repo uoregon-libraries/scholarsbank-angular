@@ -1082,6 +1082,8 @@
 
   "collection.page.browse.recent.empty": "No items to show",
 
+  "collection.page.browse.search.head": "Search",
+
   "collection.page.edit": "Edit this collection",
 
   "collection.page.handle": "Permanent URI for this collection",
@@ -1089,6 +1091,8 @@
   "collection.page.license": "License",
 
   "collection.page.news": "News",
+
+  "collection.search.results.head": "Search Results",
 
   "collection.select.confirm": "Confirm selected",
 
@@ -2911,6 +2915,10 @@
   "menu.section.new_item_version": "Item Version",
 
   "menu.section.new_process": "Process",
+
+  "menu.section.notifications": "Notifications",
+
+  "menu.section.notifications_publication-claim": "Publication Claim",
 
   "menu.section.pin": "Pin sidebar",
 

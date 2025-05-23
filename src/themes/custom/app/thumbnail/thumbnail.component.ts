@@ -11,8 +11,8 @@ import { ThumbnailComponent as BaseComponent } from '../../../../app/thumbnail/t
   selector: 'ds-themed-thumbnail',
   // styleUrls: ['./thumbnail.component.scss'],
   styleUrls: ['../../../../app/thumbnail/thumbnail.component.scss'],
-  // templateUrl: './thumbnail.component.html',
-  templateUrl: '../../../../app/thumbnail/thumbnail.component.html',
+  templateUrl: './thumbnail.component.html',
+  // templateUrl: '../../../../app/thumbnail/thumbnail.component.html',
   standalone: true,
   imports: [VarDirective, CommonModule, ThemedLoadingComponent, TranslateModule, SafeUrlPipe],
 })

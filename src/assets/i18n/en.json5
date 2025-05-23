@@ -816,6 +816,8 @@
 
   "pagination.next.button.disabled.tooltip": "No more pages of results",
 
+  "browse.search-form.placeholder": "Search the repository",
+
   "browse.startsWith": ", starting with {{ startsWith }}",
 
   "browse.startsWith.choose_start": "(Choose start)",
@@ -866,9 +868,9 @@
 
   "browse.taxonomy.button": "Browse",
 
-  "browse.title": "Browsing {{ collection }} by {{ field }}{{ startsWith }} {{ value }}",
+  "browse.title": "Browsing by {{ field }}{{ startsWith }} {{ value }}",
 
-  "browse.title.page": "Browsing {{ collection }} by {{ field }} {{ value }}",
+  "browse.title.page": "Browsing by {{ field }} {{ value }}",
 
   "search.browse.item-back": "Back to Results",
 

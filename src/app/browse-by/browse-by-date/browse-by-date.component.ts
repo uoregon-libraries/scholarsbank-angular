@@ -79,6 +79,7 @@ export class BrowseByDateComponent extends BrowseByMetadataComponent implements 
    * The default metadata keys to use for determining the lower limit of the StartsWith dropdown options
    */
   defaultMetadataKeys = ['dc.date.issued'];
+  preferMetadataKeys = ['dc.date.accessioned'];
 
   public constructor(
     protected route: ActivatedRoute,
@@ -99,7 +100,7 @@ export class BrowseByDateComponent extends BrowseByMetadataComponent implements 
       this.loading$ = observableOf(false);
       return;
     }
-    const sortConfig = new SortOptions('default', SortDirection.ASC);
+    const sortConfig = new SortOptions('default', SortDirection.DESC);
     this.startsWithType = StartsWithType.date;
     this.currentPagination$ = this.paginationService.getCurrentPagination(this.paginationConfig.id, this.paginationConfig);
     this.currentSort$ = this.paginationService.getCurrentSort(this.paginationConfig.id, sortConfig);
@@ -117,7 +118,7 @@ export class BrowseByDateComponent extends BrowseByMetadataComponent implements 
         this.currentPagination$,
         this.currentSort$,
       ]).subscribe(([params, scope, currentPage, currentSort]: [Params, string, PaginationComponentOptions, SortOptions]) => {
-        const metadataKeys = params.browseDefinition ? params.browseDefinition.metadataKeys : this.defaultMetadataKeys;
+        const metadataKeys = params.browseDefinition ? params.browseDefinition.metadataKeys : this.preferMetadataKeys;
         this.browseId = params.id || this.defaultBrowseId;
         this.startsWith = +params.startsWith || params.startsWith;
         const searchOptions = browseParamsToOptions(params, scope, currentPage, currentSort, this.browseId, this.fetchThumbnails);

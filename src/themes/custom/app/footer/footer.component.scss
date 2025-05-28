@@ -1,0 +1,272 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .left-column {
+    flex: 0 0 792px;
+    max-width: 792px;
+    padding-right: 20px;
+  }
+  
+  .right-column {
+    padding: 10px 0 0 20px;
+  }
+  
+  .cell {
+    flex: 1;
+    padding: 10px;
+    // border: 1px solid;
+  }
+  
+  .full-width {
+    flex: 0 0 66.7%;
+  }
+  
+  .footer-row {
+    display: flex;
+    padding: 10px 0 10px;
+  
+    & ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 1.625rem;
+    }
+  }
+  
+  .give-now-btn {
+    display: flex;
+    padding: 20px 30px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+    border: 2px solid #fff;
+    text-decoration: none;
+    color: white;
+    outline-offset: 5px;
+  }
+  
+  .give-now-btn:hover,
+  .give-now-btn:focus-visible {
+    text-decoration: none;
+    color: #fee11a;
+    border-color: #fee11a;
+  }
+  
+  @media screen and (min-width: 576px) {
+    .give-now-btn {
+        width: fit-content;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .left-column {
+        flex: 0 0 66%;
+        max-width: 66%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .form {
+        flex-direction: column;
+    }
+  
+    .left-column {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-right: 0;
+        flex-direction: column;
+    }
+  
+    .right-column {
+        flex: 0 0 50%;
+        max-width: 100%;
+        padding: 10px;
+        flex-basis: 180px;
+        ;
+    }
+  
+    .footer-row {
+        flex-direction: column;
+    }
+  }
+  
+  .footer {
+    background-color: #222;
+    color: #fff;
+  }
+  
+  .footer-content {
+      font-size: 1rem;
+      line-height: 1.4rem;
+    color: #fff !important;
+  
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+  }
+  
+  .footer-column {
+    flex: 1 1 200px;
+    margin-bottom: 20px;
+    padding-right: 20px;
+  }
+  
+  h3 {
+    font-size: 1.4rem;
+    line-height: 1.9rem;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  
+  a {
+    color: #fee11a;
+    text-decoration: underline;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .cell>a {
+    // color: #fee11a;
+      font-size: 1rem;
+      line-height: 1.4rem;
+  }
+  
+  .cell>.give-now-btn:hover {
+    color: #fee11a;
+  }
+  
+  .cell>a:hover {
+    color: #fff;
+  }
+  
+  .bottom-links,
+  .copyright {
+    a:hover {
+        color: #fff;
+    }
+  }
+  
+  p {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 5px;
+  }
+  
+  .bottom-links {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .bottom-links a {
+    display: inline-block;
+    margin: 0 10px 10px;
+  }
+  
+  .copyright {
+    text-align: center;
+    font-size: 12px;
+  }
+  
+  .copyright a {
+    display: inline;
+  }
+  
+  .bottom-footer {
+    background-color: #000;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+    }
+  
+    .footer-column {
+        flex-basis: 100%;
+        padding-right: 0;
+    }
+  
+    .bottom-links a {
+        display: flex;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        justify-content: left;
+    }
+  
+    .copyright {
+        display: flex;
+    }
+  }
+  
+  .donation-section {
+    background-color: #222;
+    color: #fff;
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto 10px;
+  }
+  
+  .donation-text {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.4rem;
+    color: #fff !important;
+  }
+  
+  @media (max-width: 768px) {
+    .donation-section {
+        flex-direction: column;
+        padding: 20px 10px;
+    }
+  
+    .donation-text {
+        max-width: 100%;
+        margin-bottom: 15px;
+        font-size: 1rem;
+        line-height: 1.4rem;
+    }
+  }
+  
+  .social-media {
+    padding: 0 0 0 10px;
+  }
+  
+  .social-media a {
+    color: #ffffff;
+    margin-right: 10px;
+    font-size: 20px;
+    display: inline-block;
+  }
+  
+  .social-media a:hover {
+    color: #fee11a;
+  }
+  
+  .uofooter {
+    background-color: black;
+    padding: 20px;
+    color: #fff;
+    clear: both;
+  }
+  
+  .cell>h3 {
+    padding-bottom: 10px;
+      font-size: 1.125rem;
+      margin: 0;
+  }
+  
+  // h1, h2, h3, h4, h5, h6 {
+  // 	font-weight: 400;
+  // 	font-variation-settings: "wght" 400,"wdth" 100,"ital" 0;
+  // 	font-family: var(--font-family-slab,"Source Serif Variable",Times,"Times New Roman",Georgia,"DejaVu Serif",serif);
+  // }

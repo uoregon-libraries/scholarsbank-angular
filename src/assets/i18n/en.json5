@@ -1748,7 +1748,7 @@
 
   "dso-selector.set-scope.community.head": "Select a search scope",
 
-  "dso-selector.set-scope.community.button": "Search all of DSpace",
+  "dso-selector.set-scope.community.button": "Search all of Scholars' Bank",
 
   "dso-selector.set-scope.community.or-divider": "or",
 
@@ -2124,11 +2124,11 @@
 
   "home.breadcrumbs": "Home",
 
-  "home.search-form.placeholder": "Search the repository ...",
+  "home.search-form.placeholder": "Search Scholars' Bank ...",
 
   "home.title": "Home",
 
-  "home.top-level-communities.head": "Communities in DSpace",
+  "home.top-level-communities.head": "Communities in Scholars' Bank",
 
   "home.top-level-communities.help": "Select a community to browse its collections.",
 
@@ -3202,7 +3202,7 @@
 
   "login.form.forgot-password": "Have you forgotten your password?",
 
-  "login.form.header": "Please log in to DSpace",
+  "login.form.header": "Please log in to Scholars' Bank",
 
   "login.form.new-user": "New user? Click here to register.",
 
@@ -3220,7 +3220,7 @@
 
   "login.breadcrumbs": "Login",
 
-  "logout.form.header": "Log out from DSpace",
+  "logout.form.header": "Log out from Scholars' Bank",
 
   "logout.form.submit": "Log out",
 
@@ -3260,7 +3260,7 @@
 
   "menu.section.browse_community_by_title": "By Title",
 
-  "menu.section.browse_global": "All of DSpace",
+  "menu.section.browse_global": "Browse All",
 
   "menu.section.browse_global_by_author": "By Author",
 
@@ -3500,7 +3500,7 @@
 
   "notification.suggestion.please": "Please",
 
-  "nav.browse.header": "All of DSpace",
+  "nav.browse.header": "All of Scholars' Bank",
 
   "nav.community-browse.header": "By Community",
 
@@ -4204,9 +4204,9 @@
 
   "repository.image.logo": "Repository logo",
 
-  "repository.title": "DSpace Repository",
+  "repository.title": "Scholars' Bank Repository",
 
-  "repository.title.prefix": "DSpace Repository :: ",
+  "repository.title.prefix": "Scholars' Bank :: ",
 
   "resource-policies.add.button": "Add",
 
@@ -4342,7 +4342,7 @@
 
   "search.breadcrumbs": "Search",
 
-  "search.search-form.placeholder": "Search the repository ...",
+  "search.search-form.placeholder": "Search Scholars' Bank ...",
 
   "search.filters.remove": "Remove filter of type {{ type }} with value {{ value }}",
 
@@ -4624,7 +4624,7 @@
 
   "search.form.search_dspace": "All repository",
 
-  "search.form.scope.all": "All of DSpace",
+  "search.form.scope.all": "All of Scholars' Bank",
 
   "search.results.head": "Search Results",
 
@@ -4722,7 +4722,7 @@
 
   "statistics.table.no-data": "No data available",
 
-  "statistics.table.title.TotalVisits": "Total visits",
+  "statistics.table.title.TotalVisits": "Most popular items in Scholars' Bank",
 
   "statistics.table.title.TotalVisitsPerMonth": "Total visits per month",
 
@@ -6793,4 +6793,82 @@
   "live-region.ordering.dropped": "{{ itemName }}, dropped at position {{ index }} of {{ length }}.",
 
   "dynamic-form-array.sortable-list.label": "Sortable list",
+
+  "info.contactus.breadcrumbs": "Contact Us",
+
+  "info.contactus.head": "Contact Us",
+
+  "info.contactus.title": "Contact Us",
+
+  "info.about.breadcrumbs": "About",
+
+  "info.about.head": "About",
+
+  "info.about.title": "About",
+
+  "browse.comcol.by.dateaccessioned": "By Most Recent",
+
+  "menu.section.browse_global_by_dateaccessioned": "By Most Recent",
+
+  "browse.metadata.dateaccessioned": "Most Recent",
+
+  "browse.metadata.dateaccessioned.breadcrumbs": "Browse by Most Recent",
+
+  "browse.metadata.itemtype": "Content Type",
+
+  "browse.metadata.itemtype.breadcrumbs": "Browse By Content Type",
+
+  "browse.comcol.by.itemtype": "By Content Type",
+
+  "menu.section.browse_global_by_itemtype": "By Content Type",
+
+  "footer.link.contactus": "Contact Us",
+
+  "info.contactus.info": "Thanks for sharing your contact us about the DSpace system. Your comments are appreciated!",
+
+  "info.contactus.email_help": "This address will be used to follow up on your contact information.",
+
+  "info.contactus.name_help": "This address will be used to follow up on your contact information.",
+
+  "info.contactus.send": "Submit Your Question",
+
+  "info.contactus.comments": "Comments",
+
+  "info.contactus.email-label": "Email *",
+
+  "info.contactus.name-label": "Name *",
+
+  "info.contactus.relationship-label": "Relationship (if any) to University of Oregon *",
+
+  "info.contactus.relationship-other-label": "If other, please identify *",
+
+  "info.contactus.related-label": "Is your question related to the University of Oregon Digital Repository? *",
+
+  "info.contactus.detail-label": "Please provide some detail as to what you are requesting, adding details about your research idea, audience and/or any technology needs you have. *",
+
+  "info.contactus.create.success": "Question Sent Successfully!",
+
+  "info.contactus.error.email.required": "A valid email address is required",
+
+  "info.contactus.error.message.required": "A comment is required",
+
+  "info.contactus.page-label": "Page",
+
+  "info.contactus.page_help": "Tha page related to contact us",
+
+  "info.contactus.mark_help": "Fields marked with * are required.",
+
+  "info.contactus.message": "Please provide some detail as to what you are requesting, adding details about your research idea, audience and/or any technology needs you have. *",
+
+  "info.contactus.other_help": "Use this address if you have selected Other",
+
+  "info.contactus.error.senderName.required": "A name is required",
+
+  "menu.section.browse_global_about": "About",
+
+  "menu.section.browse_global_author_profiles": "Author Profiles",
+
+  "menu.section.browse_global_contactus": "Contact Us",
+
+  "submission.sections.submit.progressbar.describe.licenses_uo": "Choose a license to attach to your work",
 }

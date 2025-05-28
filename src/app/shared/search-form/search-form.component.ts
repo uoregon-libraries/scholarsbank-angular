@@ -87,6 +87,11 @@ export class SearchFormComponent implements OnChanges {
   @Input() searchPlaceholder: string;
 
   /**
+   * The placeholder of the search input (home page exclusive)
+   */
+  @Input() homePlaceholder: string;
+
+  /**
    * Defines whether or not to show the scope selector
    */
   @Input() showScopeSelector = false;

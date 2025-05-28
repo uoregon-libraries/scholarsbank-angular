@@ -1,0 +1,105 @@
+.button-group {
+  display: flex;
+  gap: 10px; /* Adjust spacing between buttons */
+}
+
+.button-container {
+  text-align: center;
+}
+
+.btn {
+  margin-top: 5px; /* Adjust spacing between image and button */
+}
+
+// In your component's CSS file
+.icon-container {
+  font-size: 100px;
+  color: #008000;
+  margin-top: 15px;
+}
+
+.label-container {
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+
+.btn-success {
+  background-color: #008000;
+  border-color: #008000;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 35px;
+  margin-top: 35px;
+}
+
+.browse-all-adjust {
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+
+// icon box
+.icon-box {
+border: 1px solid #e0e0e0;
+padding: 20px;
+border-radius: 5px;
+transition: all 0.3s ease;
+margin-top: 50px;
+
+&:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+i {
+  font-size: 48px;
+  color: #008000;
+  margin-bottom: 15px;
+}
+
+h5 {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: normal;
+}
+}
+
+// iuewweruuyr
+.custom-button {
+background-color: white;
+color: black;
+border: 2px solid black;
+border-radius: 20px; // Adjust this value to change the roundness of corners
+padding: 8px 16px;
+font-size: 14px;
+font-weight: normal;
+text-align: center;
+cursor: pointer;
+transition: all 0.3s ease;
+
+&:hover {
+  background-color: #f0f0f0; // Slight gray on hover
+}
+
+&:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+}
+}
+
+
+.border-button {
+padding: 10px 20px;
+font-size: 16px;
+color: #2c3e50; /* Dark color for text */
+border: 2px solid #2c3e50; /* Border color */
+border-radius: 5px; /* Optional: adjust the border radius */
+background-color: transparent;
+cursor: pointer;
+}
+
+.border-button:hover {
+background-color: #ecf0f1; /* Optional: background color on hover */
+}

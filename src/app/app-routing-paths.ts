@@ -25,14 +25,20 @@ export function getBitstreamModuleRoute() {
 export function getBitstreamDownloadRoute(bitstream): string {
   return new URLCombiner(getBitstreamModuleRoute(), bitstream.uuid, 'download').toString();
 }
-export function getBitstreamRequestACopyRoute(item, bitstream): { routerLink: string, queryParams: any } {
-  const url = new URLCombiner(getItemModuleRoute(), item.uuid, 'request-a-copy').toString();
-  return {
-    routerLink: url,
-    queryParams: {
-      bitstream: bitstream.uuid,
-    },
-  };
+// export function getBitstreamRequestACopyRoute(item, bitstream): { routerLink: string, queryParams: any } {
+//   const url = new URLCombiner(getItemModuleRoute(), item.uuid, 'request-a-copy').toString();
+//   return {
+//     routerLink: url,
+//     queryParams: {
+//       bitstream: bitstream.uuid,
+//     },
+//   };
+// }
+
+export const LOGIN_PAGE_PATH = 'login';
+
+export function getLoginRoute(): { routerLink: string, queryParams: any } {
+  return {routerLink: `/${LOGIN_PAGE_PATH}`, queryParams: {}};
 }
 
 export const HOME_PAGE_PATH = 'home';
@@ -141,4 +147,3 @@ export function getEditItemPageRoute() {
   return `/${EDIT_ITEM_PATH}`;
 }
 export const CORRECTION_TYPE_PATH = 'corrections';
-

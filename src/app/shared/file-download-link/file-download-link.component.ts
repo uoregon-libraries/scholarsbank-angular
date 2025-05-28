@@ -20,7 +20,8 @@ import { map } from 'rxjs/operators';
 
 import {
   getBitstreamDownloadRoute,
-  getBitstreamRequestACopyRoute,
+  // getBitstreamRequestACopyRoute,
+  getLoginRoute,
 } from '../../app-routing-paths';
 import { DSONameService } from '../../core/breadcrumbs/dso-name.service';
 import { AuthorizationDataService } from '../../core/data/feature-authorization/authorization-data.service';
@@ -93,7 +94,7 @@ export class FileDownloadLinkComponent implements OnInit {
 
   getBitstreamPath(canDownload: boolean, canRequestACopy: boolean) {
     if (!canDownload && canRequestACopy && hasValue(this.item)) {
-      return getBitstreamRequestACopyRoute(this.item, this.bitstream);
+      return getLoginRoute();
     }
     return this.getBitstreamDownloadPath();
   }

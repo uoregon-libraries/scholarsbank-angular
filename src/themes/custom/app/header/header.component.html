@@ -1,0 +1,47 @@
+<header id="main-site-header">
+    <div class="h-100 d-flex flex-column flex-nowrap" id="main-site-header-container">
+      <!-- UO Libraries logo and SB logo wrapper -->
+      <div id="header-top"
+           [attr.role]="(isMobile$ | async) ? 'navigation' : 'presentation'"
+           [attr.aria-label]="(isMobile$ | async) ? ('nav.main.description' | translate) : null"
+           class="h-100 flex-fill d-flex flex-column flex-nowrap align-items-stretch">
+        <div id="uolib-header" class="navbar-ul">
+            <div class="container navbar-header">
+                <a id="uolib-logo" href="https://library.uoregon.edu">
+                    <img class="img-responsive" src="assets/custom/images/libraries.svg" [attr.alt]="'menu.header.image.logo' | translate"/>
+                </a>
+            </div>
+        </div>
+        <div id="sb-header" class="navbar navbar-default navbar-ds navbar-static-top">
+            <div class="container navbar-header">
+                <a routerLink="/home">
+                    <h1 class="text-yellow united-Serif-variable site-header">Scholars' Bank</h1>
+                </a>
+            </div>
+        </div>
+      </div>
+      <!-- Navbar wrapper -->
+      <nav *ngIf="(isMobile$ | async) !== true" class="navbar navbar-expand sb-navbar align-items-stretch align-self-stretch" id="desktop-navbar" [attr.aria-label]="'nav.main.description' | translate">
+        <ds-navbar class="w-100"></ds-navbar>
+      </nav>
+      <!-- Mobile search bar and other menus -->
+      <div id="header-right" class="sb-navbar h-100 d-md-none d-flex flex-row flex-nowrap justify-content-end align-items-center gapx-1">
+        <ds-search-navbar></ds-search-navbar>
+        <div role="menubar" class="h-100 d-flex flex-row flex-nowrap align-items-center gapx-1">
+          <ds-lang-switch></ds-lang-switch>
+          <ds-context-help-toggle></ds-context-help-toggle>
+          <ds-impersonate-navbar></ds-impersonate-navbar>
+          <ds-auth-nav-menu></ds-auth-nav-menu>
+        </div>
+  
+        <div id="mobile-navbar-toggler" class="d-block d-lg-none ml-3" *ngIf="(isMobile$ | async)">
+          <button id="navbar-toggler" class="btn" type="button" (click)="toggleNavbar()"
+                  [attr.aria-label]="'nav.toggle' | translate" aria-controls="collapsible-mobile-navbar" [attr.aria-expanded]="(isNavBarCollapsed$ | async) !== true">
+            <span class="fas fa-bars fa-fw fa-xl toggler-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+  
+      </div>
+    </div>
+</header>
+  

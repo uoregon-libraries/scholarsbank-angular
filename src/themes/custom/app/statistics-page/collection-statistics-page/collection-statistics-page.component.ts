@@ -6,6 +6,7 @@ import { ThemedLoadingComponent } from '../../../../../app/shared/loading/themed
 import { VarDirective } from '../../../../../app/shared/utils/var.directive';
 import { CollectionStatisticsPageComponent as BaseComponent } from '../../../../../app/statistics-page/collection-statistics-page/collection-statistics-page.component';
 import { StatisticsTableComponent } from '../../../../../app/statistics-page/statistics-table/statistics-table.component';
+import { StatisticsChartComponent } from '../../../../../app/statistics-page/statistics-chart/statistics-chart.component';
 
 @Component({
   selector: 'ds-themed-collection-statistics-page',
@@ -14,11 +15,10 @@ import { StatisticsTableComponent } from '../../../../../app/statistics-page/sta
   // templateUrl: './collection-statistics-page.component.html',
   templateUrl: '../../../../../app/statistics-page/statistics-page/statistics-page.component.html',
   standalone: true,
-  imports: [CommonModule, VarDirective, ThemedLoadingComponent, StatisticsTableComponent, TranslateModule],
+  imports: [CommonModule, VarDirective, ThemedLoadingComponent, StatisticsTableComponent, StatisticsChartComponent, TranslateModule],
 })
 
 /**
  * Component representing the statistics page for a collection.
  */
 export class CollectionStatisticsPageComponent extends BaseComponent {}
-

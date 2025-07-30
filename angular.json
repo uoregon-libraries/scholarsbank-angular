@@ -40,10 +40,23 @@
             "aot": true,
             "assets": [
               "src/assets",
-              "src/robots.txt"
+              "src/robots.txt",
+              {
+                "glob": "**/*",
+                "input": "node_modules/leaflet/dist/images/",
+                "output": "./assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./config/",
+                "output": "./assets/"
+              }
             ],
             "styles": [
               "src/styles/startup.scss",
+              "node_modules/leaflet/dist/leaflet.css",
+              "node_modules/leaflet.markercluster/dist/MarkerCluster.css",
+              "node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
               {
                 "input": "src/styles/base-theme.scss",
                 "inject": false,

@@ -650,7 +650,7 @@ export class StatisticsChartComponent implements OnInit, AfterViewInit, OnDestro
 
   convertMonth(datestr: string) {
     const datePipe = new DatePipe('en-US');
-    return datePipe.transform(datestr, 'MMM yyyy') || '';
+    return datePipe.transform(datestr, 'MMM yyyy', 'UTC') || '';
   }
 
   private transformArray(data: (string | number)[]): TableViewData[] {

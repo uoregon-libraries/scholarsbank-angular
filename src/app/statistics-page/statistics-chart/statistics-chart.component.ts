@@ -405,7 +405,11 @@ export class StatisticsChartComponent implements OnInit, AfterViewInit, OnDestro
   private onEachFeature(feature: any, layer: any): void {
     const countryCode = feature.properties.ISO_A2;
     const viewCounts = this.countryData[countryCode];
-    layer.bindPopup(`<strong>${feature.properties.ADMIN}</strong><br>Page views: ${this.formatNumber(viewCounts)}`);
+    if (this.scope.type === 'site') {
+      layer.bindPopup(`<strong>${feature.properties.ADMIN}</strong><br>Downloads: ${this.formatNumber(viewCounts)}`);
+    } else {
+      layer.bindPopup(`<strong>${feature.properties.ADMIN}</strong><br>Page views: ${this.formatNumber(viewCounts)}`);
+    }
   }
 
   /**

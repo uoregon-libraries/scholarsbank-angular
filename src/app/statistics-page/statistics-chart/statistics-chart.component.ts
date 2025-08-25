@@ -120,7 +120,28 @@ export class StatisticsChartComponent implements OnInit, AfterViewInit, OnDestro
     if (typeof value === 'undefined') {
       return "0";
     }
-    return value.toString();
+    
+    const num = typeof value === 'string' ? parseFloat(value) : value;
+    const isNegative = num < 0;
+    const absNum = Math.abs(num);
+    
+    // Split number into integer and decimal parts
+    const [integerPart, decimalPart = ''] = absNum.toString().split('.');
+    
+    // Add thousands separator to integer part
+    const formattedInteger = integerPart
+        .split('')
+        .reverse()
+        .reduce((acc, digit, index) => {
+            const shouldAddSeparator = index > 0 && index % 3 === 0;
+            return digit + (shouldAddSeparator ? separator : '') + acc;
+        }, '');
+    
+    // Combine parts
+    const result = formattedInteger + (decimalPart ? `.${decimalPart}` : '');
+
+    // Add negative sign if needed
+    return isNegative ? `-${result}` : result;
   }
 
   /**

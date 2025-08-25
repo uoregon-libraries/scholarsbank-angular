@@ -7,6 +7,7 @@ import { ThemedLoadingComponent } from '../../shared/loading/themed-loading.comp
 import { VarDirective } from '../../shared/utils/var.directive';
 import { StatisticsPageDirective } from '../statistics-page/statistics-page.directive';
 import { StatisticsTableComponent } from '../statistics-table/statistics-table.component';
+import { StatisticsChartComponent } from '../statistics-chart/statistics-chart.component';
 
 /**
  * Component representing the statistics page for an item.
@@ -16,7 +17,7 @@ import { StatisticsTableComponent } from '../statistics-table/statistics-table.c
   templateUrl: '../statistics-page/statistics-page.component.html',
   styleUrls: ['./item-statistics-page.component.scss'],
   standalone: true,
-  imports: [CommonModule, VarDirective, ThemedLoadingComponent, StatisticsTableComponent, TranslateModule],
+  imports: [CommonModule, VarDirective, ThemedLoadingComponent, StatisticsTableComponent, StatisticsChartComponent, TranslateModule],
 })
 export class ItemStatisticsPageComponent extends StatisticsPageDirective<Item> {
 
@@ -27,6 +28,7 @@ export class ItemStatisticsPageComponent extends StatisticsPageDirective<Item> {
     'TotalVisits',
     'TotalVisitsPerMonth',
     'TotalDownloads',
+    'TotalDownloadsPerMonth',
     'TopCountries',
     'TopCities',
   ];

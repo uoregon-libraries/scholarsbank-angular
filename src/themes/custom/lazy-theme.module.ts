@@ -107,6 +107,8 @@ import { WorkspaceItemsDeletePageComponent } from './app/workspaceitems-edit-pag
 import { ContactusComponent } from './app/info/contactus/contactus.component';
 import { AboutComponent } from './app/info/about/about.component';
 
+import { NgChartsModule } from 'ng2-charts';
+
 const DECLARATIONS = [
   FileSectionComponent,
   HomePageComponent,
@@ -218,6 +220,7 @@ const DECLARATIONS = [
     TranslateModule,
     FormsModule,
     NgxGalleryModule,
+    NgChartsModule,
     ...DECLARATIONS,
   ],
 })

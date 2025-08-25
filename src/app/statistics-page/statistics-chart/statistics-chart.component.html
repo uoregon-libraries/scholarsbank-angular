@@ -1,0 +1,250 @@
+<div class="container">
+    <div class="flex-container1">
+        <div class="row">
+            <div class="full-width-item">
+                <p>Please be aware that bot traffic may affect statistics for page views and downloads.</p>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="scope.type==='site'">
+        <div class="flex-container1">
+            <div class="row">
+                <h2>Total items</h2>
+                <div class="full-width-item icon-box">
+                    <p>This {{scope.type}} has {{formatNumber(allItemCount)}} items</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="scope.type==='community' || scope.type==='collection'">
+        <div class="row">
+            <h2>Total items</h2>
+            <div class="full-width-item icon-box">
+                <p>This {{scope.type}} has {{formatNumber(scope.archivedItemsCount)}} items</p>
+            </div>
+        </div>
+    </ng-container>
+
+
+    <div class="flex-container2">
+        <div class="row">
+            <div class="flex-item flex-item-1 icon-box">
+                <div class="chart-container">
+                    <canvas id="chartDoughnut"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h2 class="mt-3 table-title">
+                Total page views and downloads
+            </h2>
+            <table class="table flex-item_table icon-box">
+                <tbody>
+                    <tr class="table-header">
+                        <th class="header-cell title-cell">{{ scope.type | titlecase }}</th>
+                        <th scope="col" class="header-cell pageviews-cell">Page views</th>
+                        <th scope="col" class="header-cell downloads-cell">Downloads</th>
+                    </tr>
+
+                    <div class="table-body">
+                        <tr class="viewdownload-data table-row">
+                            <th scope="row" data-test="statistics-label" class="table-cell title-cell">
+                                {{ getName(scope) }}
+                            </th>
+                            <td class="table-cell pageviews-cell">
+                                {{ formatNumber(chartTotalData[0]) }}
+                            </td>
+                            <td class="table-cell downloads-cell">
+                                {{ formatNumber(chartTotalData[1]) }}
+                            </td>
+                        </tr>
+                    </div>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="flex-item flex-item-2 icon-box">
+                <canvas id="myChart" width="500" height="300"></canvas>
+            </div>
+        </div>
+
+        <div class="row">
+            <h2 class="mt-3 table-title">
+                Page views and downloads over 6 months
+            </h2>
+            <table class="table flex-item_table icon-box">
+                <tbody>
+                    <tr class="table-header">
+                        <th scope="col" class="header-cell month-cell">Month</th>
+                        <th scope="col" class="header-cell pageviews-cell">Page views</th>
+                        <th scope="col" class="header-cell downloads-cell">Downloads</th>
+                    </tr>
+
+                    <div class="table-body">
+                        <tr *ngFor="let item of chartMonthlyLabels; let i = index" class="{{item}}-data table-row">
+                            <th scope="row" data-test="statistics-label" class="table-cell month-cell">
+                                {{ item }}
+                            </th>
+                            <td class="table-cell pageviews-cell">
+                                {{ formatNumber(chartMonthlyViewData[i]) }}
+                            </td>
+                            <td class="table-cell downloads-cell">
+                                {{ formatNumber(chartMonthlyDownloadData[i]) }}
+                            </td>
+                        </tr>
+                    </div>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div *ngIf="scope.type==='community' || scope.type==='collection'">
+        <div class="row">
+            <h2 class="mt-3 table-title">
+                Top 10 items from {{ getName(scope) }} by page views
+            </h2>
+            <table class="table flex-item_table icon-box">
+                <tbody>
+                    <tr class="table-header">
+                        <th scope="col" class="header-cell title-cell">Title</th>
+                        <th scope="col" class="header-cell pageviews-cell">Page views</th>
+                    </tr>
+
+                    <div class="table-body">
+                        <tr *ngFor="let item of topItemsLabels; let i = index" class="{{item}}-data table-row">
+                            <th scope="row" data-test="statistics-label" class="table-cell month-cell">
+                                <a [routerLink]="['/items', topItemsIds[i]]">{{ item }}</a>
+                            </th>
+                            <td class="table-cell pageviews-cell">
+                                {{ formatNumber(topItemsViews[i]) }}
+                            </td>
+                        </tr>
+                    </div>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div *ngIf="scope.type==='site'">
+        <div class="flex-container_table">
+            <div class="row">
+                <h2 class="mt-3 table-title">
+                    Top 10 items from {{ getName(scope) }} by page views
+                </h2>
+                <table class="flex-item_table icon-box">
+                    <tbody>
+                        <div class="table-header">
+                            <th class="header-cell title-cell">
+                                Title
+                            </th>
+                            <th class="header-cell pageviews-cell">
+                                Pageviews
+                            </th>
+                        </div>
+                        <div class="table-body">
+                            <tr class="table-row" *ngFor="let item of itempageviews">
+                                <th class="table-cell title-cell"><a [routerLink]="['/items', item.title]">{{
+                                        (getLabel(item.title) | async) }}</a></th>
+                                <td class="table-cell pageviews-cell">{{ item.views }}</td>
+                            </tr>
+                        </div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <ng-container *ngIf="!countryData">
+            <ds-loading></ds-loading>
+        </ng-container>
+        <div class="row">
+            <h2 class="map-title">Country downloads</h2><span>(Click on the countries on the map to view the
+                data.)</span>
+            <div class="full-width-item icon-box">
+                <div class="map-container">
+                    <div id="map" class="map"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-container_table">
+            <div class="row">
+                <h2 class="table-title">Country downloads</h2>
+                <div class="table flex-item_table icon-box">
+                    <div class="table-header">
+                        <div class="header-cell2 country-cell">
+                            Country
+                        </div>
+                        <div class="header-cell2 downloads-cell">
+                            Downloads
+                        </div>
+                        <div class="header-cell2 country-cell">
+                            Country
+                        </div>
+                        <div class="header-cell2 downloads-cell">
+                            Downloads
+                        </div>
+                    </div>
+                    <ng-container *ngIf="!countryTableData">
+                        <ds-loading></ds-loading>
+                    </ng-container>
+                    <div class="table-body">
+                        <div class="table-row" *ngFor="let row of countryTableData">
+                            <div class="table-cell2 country-cell">{{row.country1}}</div>
+                            <div class="table-cell2 downloads-cell">{{formatNumber(row.downloads1)}}</div>
+                            <div class="table-cell2 country-cell">{{row.country2}}</div>
+                            <div class="table-cell2 downloads-cell">{{formatNumber(row.downloads2)}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!(scope.type==='site')">
+        <ng-container *ngIf="!countryData">
+            <ds-loading></ds-loading>
+        </ng-container>
+        <div class="row">
+            <h2 class="map-title">Country views</h2><span>(Click on the countries on the map to view the
+                data.)</span>
+            <div class="full-width-item icon-box">
+                <div class="full-width-item map-container">
+                    <div id="map" class="map"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-container_table">
+            <div class="row">
+                <h2 class="table-title">Country views</h2>
+                <div class="table flex-item_table icon-box">
+                    <div class="table-header">
+                        <div class="header-cell2 country-cell">
+                            Country
+                        </div>
+                        <div class="header-cell2 downloads-cell">
+                            Views
+                        </div>
+                        <div class="header-cell2 country-cell">
+                            Country
+                        </div>
+                        <div class="header-cell2 downloads-cell">
+                            Views
+                        </div>
+                    </div>
+                    <ng-container *ngIf="!countryTableData">
+                        <ds-loading></ds-loading>
+                    </ng-container>
+                    <div class="table-body">
+                        <div class="table-row" *ngFor="let row of countryTableData">
+                            <div class="table-cell2 country-cell">{{row.country1}}</div>
+                            <div class="table-cell2 downloads-cell">{{formatNumber(row.downloads1)}}</div>
+                            <div class="table-cell2 country-cell">{{row.country2}}</div>
+                            <div class="table-cell2 downloads-cell">{{formatNumber(row.downloads2)}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

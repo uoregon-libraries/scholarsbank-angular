@@ -31,13 +31,15 @@ export class ContactusComponent implements OnInit, AfterViewInit {
       const titleValue = paramMap.get('itemTitle');
       const urlValue = paramMap.get('itemURL');
 
-      this.waitForElement('#pdetails_20077', (el) => {
-        el.value =
-          'Add more details about the accessibility issue that you would like to report:\n\n' +
-          'Title: ' + titleValue + '\n' +
-          'URL: ' + urlValue;
-        el.style.height = "150px";
-      });
+      if (titleValue && urlValue){
+        this.waitForElement('#pdetails_20077', (el) => {
+          el.value =
+            'Add more details about the accessibility issue that you would like to report:\n\n' +
+            'Title: ' + titleValue + '\n' +
+            'URL: ' + urlValue;
+          el.style.height = "150px";
+        });
+      }
     });
   };
 

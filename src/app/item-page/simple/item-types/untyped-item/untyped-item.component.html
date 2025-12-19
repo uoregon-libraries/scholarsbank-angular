@@ -48,6 +48,12 @@
       [fields]="['dc.publisher']"
       [label]="'item.page.publisher'">
     </ds-generic-item-page-field>
+    <div>
+      <a class="btn btn-outline-primary" [routerLink]="['/info/contactus']" 
+        [queryParams]="{itemTitle: object.name, itemURL: absUrl}" role="button">
+        <i class="fas fa-circle-exclamation"></i> {{"info.contactus.accessibility" | translate}}
+      </a>
+    </div>
   </div>
   <div class="col-xs-12 col-md-6">
     <ds-item-page-abstract-field [item]="object"></ds-item-page-abstract-field>

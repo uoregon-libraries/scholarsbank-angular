@@ -35,7 +35,8 @@ export class ContactusComponent implements OnInit, AfterViewInit {
         el.value =
           'Add more details about the accessibility issue that you would like to report:\n\n' +
           'Title: ' + titleValue + '\n' +
-          'URL: ' + urlValue
+          'URL: ' + urlValue;
+        el.style.height = "150px";
       });
     });
   };

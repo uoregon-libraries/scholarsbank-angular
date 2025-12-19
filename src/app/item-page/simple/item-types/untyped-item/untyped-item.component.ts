@@ -62,4 +62,6 @@ import { ItemComponent } from '../shared/item.component';
     ItemPageCcLicenseFieldComponent,
   ],
 })
-export class UntypedItemComponent extends ItemComponent {}
+export class UntypedItemComponent extends ItemComponent {
+  public absUrl = window.location.href;
+}

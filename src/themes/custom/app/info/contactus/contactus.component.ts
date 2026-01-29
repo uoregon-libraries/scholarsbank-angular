@@ -32,12 +32,16 @@ export class ContactusComponent implements OnInit, AfterViewInit {
       const urlValue = paramMap.get('itemURL');
 
       if (titleValue && urlValue){
-        this.waitForElement('#pdetails_20077', (el) => {
-          el.value =
-            'Add more details about the accessibility issue that you would like to report:\n\n' +
+        this.waitForElement('#pquestion_20077', (question) => {
+          question.value =
+            'Accessibility Issue ';
+        });
+        this.waitForElement('#pdetails_20077', (details) => {
+          details.value =
+            'Add more details about the accessibility issue that you would like to report:\n\n\n' +
             'Title: ' + titleValue + '\n' +
             'URL: ' + urlValue;
-          el.style.height = "150px";
+          details.style.height = "150px";
         });
       }
     });

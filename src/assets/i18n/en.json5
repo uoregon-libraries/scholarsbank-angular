@@ -3264,6 +3264,8 @@
 
   "menu.section.browse_global_by_author": "By Author",
 
+  "menu.section.browse_global_by_community": "By Community",
+
   "menu.section.browse_global_by_dateissued": "By Issue Date",
 
   "menu.section.browse_global_by_subject": "By Subject",
@@ -6863,6 +6865,8 @@
   "info.contactus.other_help": "Use this address if you have selected Other",
 
   "info.contactus.error.senderName.required": "A name is required",
+
+  "info.contactus.accessibility": "Request accessibility accommodation",
 
   "menu.section.browse_global_about": "About",
 

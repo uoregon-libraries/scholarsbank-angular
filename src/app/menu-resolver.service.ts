@@ -164,6 +164,18 @@ export class MenuResolverService  {
               });
             }
           });
+          menuList.push({
+            id: `browse_global_by_community`,
+            parentID: 'browse_global',
+            active: false,
+            visible: true,
+            model: {
+              type: MenuItemType.LINK,
+              text: `menu.section.browse_global_by_community`,
+              link: `/community-list`,
+            } as LinkMenuItemModel,
+          });
+
           menuList.push(
             /* Browse */
             {

@@ -3,13 +3,9 @@
     <div class="col-md-3 text-center mb-4" *ngFor="let item of items$ | async">
       <a href="{{ item.uuid }}">
         <div class="icon-box">
-          <!-- <i [class]="item.icon"></i> -->
-          <img src="assets/images/{{ item.icon }}" alt="{{ item.label }}">
-          <h5 class="border-button united-Serif-regular">{{ item.label }}</h5>
+          <img src="assets/images/{{ item.icon }}" alt="">
+          <h2 class="border-button united-Serif-regular">{{ item.label }}</h2>
         </div>
-        <!-- <div class="label-container">
-          <span class="label">{{ item.label }}</span>
-        </div> -->
       </a>
     </div>
   </div>

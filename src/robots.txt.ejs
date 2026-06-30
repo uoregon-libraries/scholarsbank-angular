@@ -1,7 +1,7 @@
-# The URL to the DSpace sitemaps
-# XML sitemap is listed first as it is preferred by most search engines
-Sitemap: <%= origin %>/sitemap_index.xml
-Sitemap: <%= origin %>/sitemap_index.html
+# The URL to the DSpace sitemaps. Hard-coded to avoid having to figure out
+# passing the right headers through multiple layers of reverse-proxies
+# (HAProxy, Apache, possibly TPS soon, ...)
+Sitemap: https://scholarsbank.uoregon.edu/sitemap_index.xml
 
 ##########################
 # Default Access Group

@@ -1,28 +1,35 @@
 <div class="container">
 
   <ng-container *ngVar="(scope$ | async) as scope">
-    <h1 *ngIf="scope"
+    @if (scope) {
+      <h1
         class="header"
         id="{{ scope.id }}">
-      {{ 'statistics.header' | translate: { scope: getName(scope) } }}
-    </h1>
+        {{ 'statistics.header' | translate: { scope: getName(scope) } }}
+      </h1>
+    }
+  </ng-container>
 
     <ng-container *ngVar="reports$ | async as reports">
 
-      <ng-container *ngIf="!reports">
-        <ds-loading></ds-loading>
-      </ng-container>
+    @if (!reports) {
+      <ds-loading></ds-loading>
+    }
 
-      <ng-container *ngIf="reports">
-        <ds-statistics-chart [reports]="reports"
-                            [scope] = "scope"
-                            class="m-2">
-        </ds-statistics-chart>
-        <div *ngIf="(hasData$ | async) !== true">
+    @if (reports) {
+      @for (report of reports; track report) {
+        <ds-statistics-table
+          [report]="report"
+          class="m-2 {{ report.id }}">
+        </ds-statistics-table>
+      }
+      @if ((hasData$ | async) !== true) {
+        <div>
           {{ 'statistics.page.no-data' | translate }}
         </div>
-      </ng-container>
-    </ng-container>
+      }
+    }
+
   </ng-container>
 
 </div>

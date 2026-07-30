@@ -6,7 +6,6 @@ import { ThemedLoadingComponent } from '../../../../../app/shared/loading/themed
 import { VarDirective } from '../../../../../app/shared/utils/var.directive';
 import { SiteStatisticsPageComponent as BaseComponent } from '../../../../../app/statistics-page/site-statistics-page/site-statistics-page.component';
 import { StatisticsTableComponent } from '../../../../../app/statistics-page/statistics-table/statistics-table.component';
-import { StatisticsChartComponent } from '../../../../../app/statistics-page/statistics-chart/statistics-chart.component';
 
 @Component({
   selector: 'ds-themed-site-statistics-page',
@@ -14,11 +13,13 @@ import { StatisticsChartComponent } from '../../../../../app/statistics-page/sta
   styleUrls: ['../../../../../app/statistics-page/site-statistics-page/site-statistics-page.component.scss'],
   // templateUrl: './site-statistics-page.component.html',
   templateUrl: '../../../../../app/statistics-page/statistics-page/statistics-page.component.html',
-  standalone: true,
-  imports: [CommonModule, VarDirective, ThemedLoadingComponent, StatisticsTableComponent, StatisticsChartComponent, TranslateModule],
+  imports: [
+    CommonModule,
+    StatisticsTableComponent,
+    ThemedLoadingComponent,
+    TranslateModule,
+    VarDirective,
+  ],
 })
-
-/**
- * Component representing the site-wide statistics page.
- */
-export class SiteStatisticsPageComponent extends BaseComponent {}
+export class SiteStatisticsPageComponent extends BaseComponent {
+}

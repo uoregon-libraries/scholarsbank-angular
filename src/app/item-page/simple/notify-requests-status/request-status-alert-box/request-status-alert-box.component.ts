@@ -1,8 +1,4 @@
-import {
-  NgClass,
-  NgForOf,
-  NgIf,
-} from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,14 +17,11 @@ import { RequestStatusEnum } from '../notify-status.enum';
   templateUrl: './request-status-alert-box.component.html',
   styleUrls: ['./request-status-alert-box.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
-    NgIf,
-    TruncatablePartComponent,
-    TruncatableComponent,
-    NgForOf,
-    TranslateModule,
     NgClass,
+    TranslateModule,
+    TruncatableComponent,
+    TruncatablePartComponent,
   ],
 })
 /**
@@ -71,6 +64,13 @@ export class RequestStatusAlertBoxComponent implements OnInit {
         this.displayOptions = {
           alertType: 'alert-danger',
           text: 'request-status-alert-box.rejected',
+        };
+        break;
+
+      case RequestStatusEnum.TENTATIVE_REJECT:
+        this.displayOptions = {
+          alertType: 'alert-warning',
+          text: 'request-status-alert-box.tentative_rejected',
         };
         break;
 

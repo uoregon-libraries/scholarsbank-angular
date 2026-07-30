@@ -16,8 +16,13 @@ import { StatisticsChartComponent } from '../statistics-chart/statistics-chart.c
   selector: 'ds-base-item-statistics-page',
   templateUrl: '../statistics-page/statistics-page.component.html',
   styleUrls: ['./item-statistics-page.component.scss'],
-  standalone: true,
-  imports: [CommonModule, VarDirective, ThemedLoadingComponent, StatisticsTableComponent, StatisticsChartComponent, TranslateModule],
+  imports: [
+    CommonModule,
+    StatisticsTableComponent,
+    ThemedLoadingComponent,
+    TranslateModule,
+    VarDirective,
+  ],
 })
 export class ItemStatisticsPageComponent extends StatisticsPageDirective<Item> {
 

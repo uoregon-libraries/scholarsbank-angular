@@ -1,8 +1,6 @@
 import {
   AsyncPipe,
-  CommonModule,
-  NgForOf,
-  NgIf,
+  NgClass,
 } from '@angular/common';
 import {
   ChangeDetectorRef,
@@ -32,7 +30,6 @@ import {
   map,
   switchMap,
   take,
-  tap,
 } from 'rxjs/operators';
 import { AlertComponent } from 'src/app/shared/alert/alert.component';
 import { AlertType } from 'src/app/shared/alert/alert-type';
@@ -72,20 +69,17 @@ import { ItemEditBitstreamBundleComponent } from './item-edit-bitstream-bundle/i
   styleUrls: ['./item-bitstreams.component.scss'],
   templateUrl: './item-bitstreams.component.html',
   imports: [
-    CommonModule,
-    AsyncPipe,
-    TranslateModule,
-    ItemEditBitstreamBundleComponent,
-    RouterLink,
-    NgIf,
-    VarDirective,
-    NgForOf,
-    ThemedLoadingComponent,
     AlertComponent,
+    AsyncPipe,
     BtnDisabledDirective,
+    ItemEditBitstreamBundleComponent,
+    NgClass,
+    RouterLink,
+    ThemedLoadingComponent,
+    TranslateModule,
+    VarDirective,
   ],
   providers: [ObjectValuesPipe],
-  standalone: true,
 })
 /**
  * Component for displaying an item's bitstreams edit page
@@ -243,13 +237,26 @@ export class ItemBitstreamsComponent extends AbstractItemUpdateComponent impleme
     this.itemService.getBundles(this.item.id, new PaginatedSearchOptions({ pagination: this.bundlesOptions })).pipe(
       getFirstSucceededRemoteData(),
       getRemoteDataPayload(),
-      tap((bundlesPL: PaginatedList<Bundle>) =>
-        this.showLoadMoreLink$.next(bundlesPL.pageInfo.currentPage < bundlesPL.pageInfo.totalPages),
-      ),
-      map((bundlePage: PaginatedList<Bundle>) => bundlePage.page),
-    ).subscribe((bundles: Bundle[]) => {
-      this.bundlesSubject.next([...this.bundlesSubject.getValue(), ...bundles]);
+    ).subscribe((bundles: PaginatedList<Bundle>) => {
+      this.updateBundles(bundles);
     });
+  }
+
+  /**
+   * Update the subject containing the bundles with the provided bundles.
+   * Also updates the showLoadMoreLink observable so it does not show up when it is no longer necessary.
+   */
+  updateBundles(newBundlesPL: PaginatedList<Bundle>) {
+    const currentBundles = this.bundlesSubject.getValue();
+
+    // Only add bundles to the bundle subject if they are not present yet
+    const bundlesToAdd = newBundlesPL.page
+      .filter(bundleToAdd => !currentBundles.some(currentBundle => currentBundle.id === bundleToAdd.id));
+
+    const updatedBundles = [...currentBundles, ...bundlesToAdd];
+
+    this.showLoadMoreLink$.next(updatedBundles.length < newBundlesPL.totalElements);
+    this.bundlesSubject.next(updatedBundles);
   }
 
 

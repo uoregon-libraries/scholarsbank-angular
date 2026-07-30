@@ -1,7 +1,6 @@
 import {
   AsyncPipe,
   NgClass,
-  NgFor,
 } from '@angular/common';
 import {
   Component,
@@ -32,8 +31,14 @@ import { DebounceDirective } from '../utils/debounce.directive';
 @Component({
   selector: 'ds-input-suggestions',
   templateUrl: './input-suggestions.component.html',
-  standalone: true,
-  imports: [FormsModule, ClickOutsideDirective, DebounceDirective, NgClass, NgFor, AsyncPipe, TranslateModule],
+  imports: [
+    AsyncPipe,
+    ClickOutsideDirective,
+    DebounceDirective,
+    FormsModule,
+    NgClass,
+    TranslateModule,
+  ],
 })
 
 /**
@@ -182,11 +187,11 @@ export class InputSuggestionsComponent implements ControlValueAccessor, OnChange
   }
 
   /**
-   * When any key is pressed (except for the Enter button) the query input should move to the input field
+   * When any key is pressed (except for the Enter & Tab button) the query input should move to the input field
    * @param {KeyboardEvent} event The keyboard event
    */
   onKeydown(event: KeyboardEvent) {
-    if (event.key !== 'Enter') {
+    if (event.key !== 'Enter' && event.key !== 'Tab') {
       this.queryInput.nativeElement.focus();
     }
   }

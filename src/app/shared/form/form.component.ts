@@ -1,7 +1,4 @@
-import {
-  AsyncPipe,
-  NgIf,
-} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -64,15 +61,13 @@ import { FormService } from './form.service';
   styleUrls: ['form.component.scss'],
   templateUrl: 'form.component.html',
   imports: [
-    DsDynamicFormComponent,
-    ReactiveFormsModule,
-    TranslateModule,
-    DynamicFormsCoreModule,
-    NgIf,
     AsyncPipe,
     BtnDisabledDirective,
+    DsDynamicFormComponent,
+    DynamicFormsCoreModule,
+    ReactiveFormsModule,
+    TranslateModule,
   ],
-  standalone: true,
 })
 export class FormComponent implements OnDestroy, OnInit {
 
@@ -236,7 +231,7 @@ export class FormComponent implements OnDestroy, OnInit {
               }
 
               if (field) {
-                const model: DynamicFormControlModel = this.formBuilderService.findById(fieldId, formModel);
+                const model: DynamicFormControlModel = this.formBuilderService.findById(fieldId, formModel, fieldIndex);
                 this.formService.addErrorToField(field, model, error.message);
                 this.changeDetectorRef.detectChanges();
 
@@ -259,7 +254,7 @@ export class FormComponent implements OnDestroy, OnInit {
               }
 
               if (field) {
-                const model: DynamicFormControlModel = this.formBuilderService.findById(fieldId, formModel);
+                const model: DynamicFormControlModel = this.formBuilderService.findById(fieldId, formModel, fieldIndex);
                 this.formService.removeErrorFromField(field, model, error.message);
               }
             });
@@ -362,7 +357,7 @@ export class FormComponent implements OnDestroy, OnInit {
   removeItem($event, arrayContext: DynamicFormArrayModel, index: number): void {
     const formArrayControl = this.formGroup.get(this.formBuilderService.getPath(arrayContext)) as UntypedFormArray;
     const event = this.getEvent($event, arrayContext, index, 'remove');
-    if (this.formBuilderService.isQualdropGroup(event.model as DynamicFormControlModel)) {
+    if (this.formBuilderService.isQualdropGroup(event.model as DynamicFormControlModel) && hasValue((event.model as any)?.value)) {
       // In case of qualdrop value remove event must be dispatched before removing the control from array
       this.removeArrayItem.emit(event);
     }

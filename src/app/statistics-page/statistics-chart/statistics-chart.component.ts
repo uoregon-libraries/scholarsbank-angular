@@ -1,10 +1,4 @@
-import {
-  AsyncPipe,
-  NgFor,
-  NgIf,
-  TitleCasePipe,
-  DatePipe,
-} from '@angular/common';
+import { AsyncPipe, TitleCasePipe, DatePipe } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -72,7 +66,7 @@ export interface TableViewData {
   templateUrl: './statistics-chart.component.html',
   styleUrls: ['./statistics-chart.component.scss'],
   standalone: true,
-  imports: [NgIf, NgFor, AsyncPipe, TitleCasePipe, TranslateModule, ThemedLoadingComponent, RouterLink],
+  imports: [AsyncPipe, TitleCasePipe, TranslateModule, ThemedLoadingComponent, RouterLink],
 })
 
 export class StatisticsChartComponent implements OnInit, AfterViewInit, OnDestroy {

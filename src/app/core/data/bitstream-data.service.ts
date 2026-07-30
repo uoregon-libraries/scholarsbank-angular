@@ -163,10 +163,23 @@ export class BitstreamDataService extends IdentifiableDataService<Bitstream> imp
       sendRequest(this.requestService),
       take(1),
     ).subscribe(() => {
-      this.requestService.removeByHrefSubstring(bitstream.self + '/format');
+      this.deleteFormatCache(bitstream);
     });
-
     return this.rdbService.buildFromRequestUUID(requestId);
+  }
+
+  private deleteFormatCache(bitstream: Bitstream) {
+    const bitsreamFormatUrl = bitstream.self + '/format';
+    this.requestService.setStaleByHrefSubstring(bitsreamFormatUrl);
+    // Delete also cache by uuid as the format could be cached also there
+    this.objectCache.getByHref(bitsreamFormatUrl).pipe(take(1)).subscribe((cachedRequest) => {
+      if (cachedRequest.requestUUIDs && cachedRequest.requestUUIDs.length > 0){
+        const requestUuid = cachedRequest.requestUUIDs[0];
+        if (this.requestService.hasByUUID(requestUuid)) {
+          this.requestService.setStaleByUUID(requestUuid);
+        }
+      }
+    });
   }
 
   /**
@@ -243,7 +256,7 @@ export class BitstreamDataService extends IdentifiableDataService<Bitstream> imp
    *                                    requested after the response becomes stale
    * @param options                     the {@link FindListOptions} for the request
    * @return {Observable<Bitstream | null>}
-   *    Return an observable that constains primary bitstream information or null
+   *    Return an observable that contains primary bitstream information or null
    */
   public findPrimaryBitstreamByItemAndName(item: Item, bundleName: string, useCachedVersionIfAvailable = true, reRequestOnStale = true, options?: FindListOptions): Observable<Bitstream | null> {
     return this.bundleService.findByItemAndName(item, bundleName, useCachedVersionIfAvailable, reRequestOnStale, options, followLink('primaryBitstream')).pipe(

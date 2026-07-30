@@ -1,8 +1,6 @@
 import {
   AsyncPipe,
   NgComponentOutlet,
-  NgFor,
-  NgIf,
 } from '@angular/common';
 import {
   AfterViewChecked,
@@ -15,9 +13,13 @@ import {
 } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
 import { Observable } from 'rxjs';
-import { first } from 'rxjs/operators';
+import {
+  first,
+  map,
+} from 'rxjs/operators';
 
 import { slide } from '../../shared/animations/slide';
+import { isNotEmpty } from '../../shared/empty.util';
 import { HostWindowService } from '../../shared/host-window.service';
 import { MenuService } from '../../shared/menu/menu.service';
 import { MenuID } from '../../shared/menu/menu-id.model';
@@ -33,13 +35,10 @@ import { NavbarSectionComponent } from '../navbar-section/navbar-section.compone
   templateUrl: './expandable-navbar-section.component.html',
   styleUrls: ['./expandable-navbar-section.component.scss'],
   animations: [slide],
-  standalone: true,
   imports: [
     AsyncPipe,
     HoverOutsideDirective,
     NgComponentOutlet,
-    NgFor,
-    NgIf,
     RouterLinkActive,
   ],
 })

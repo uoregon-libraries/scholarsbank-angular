@@ -6,6 +6,7 @@ export const FEEDBACK_PATH = 'feedback';
 export const COAR_NOTIFY_SUPPORT = 'coar-notify-support';
 export const CONTACTUS_PATH = 'contactus';
 export const ABOUT_PATH = 'about';
+export const ACCESSIBILITY_SETTINGS_PATH = 'accessibility';
 
 export function getEndUserAgreementPath() {
   return getSubPath(END_USER_AGREEMENT_PATH);
@@ -29,6 +30,10 @@ export function getContactUsPath() {
 
 export function getAboutPath() {
   return getSubPath(ABOUT_PATH);
+}
+
+export function getAccessibilitySettingsPath() {
+  return getSubPath(ACCESSIBILITY_SETTINGS_PATH);
 }
 
 function getSubPath(path: string) {

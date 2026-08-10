@@ -12,23 +12,23 @@
 
     <ng-container *ngVar="reports$ | async as reports">
 
-    @if (!reports) {
-      <ds-loading></ds-loading>
-    }
+      @if (!reports) {
+        <ds-loading></ds-loading>
+      }
 
-    @if (reports) {
-      @for (report of reports; track report) {
-        <ds-statistics-table
-          [report]="report"
-          class="m-2 {{ report.id }}">
-        </ds-statistics-table>
+      @if (reports) {
+          <ds-statistics-chart
+            [reports]="reports"
+            [scope] = "scope$ | async"
+            class="m-2">
+          </ds-statistics-chart>
+        
+        @if ((hasData$ | async) !== true) {
+          <div>
+            {{ 'statistics.page.no-data' | translate }}
+          </div>
+        }
       }
-      @if ((hasData$ | async) !== true) {
-        <div>
-          {{ 'statistics.page.no-data' | translate }}
-        </div>
-      }
-    }
 
   </ng-container>
 

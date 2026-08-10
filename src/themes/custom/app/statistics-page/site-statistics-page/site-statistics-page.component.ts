@@ -6,6 +6,7 @@ import { ThemedLoadingComponent } from '../../../../../app/shared/loading/themed
 import { VarDirective } from '../../../../../app/shared/utils/var.directive';
 import { SiteStatisticsPageComponent as BaseComponent } from '../../../../../app/statistics-page/site-statistics-page/site-statistics-page.component';
 import { StatisticsTableComponent } from '../../../../../app/statistics-page/statistics-table/statistics-table.component';
+import { StatisticsChartComponent } from '../../../../../app/statistics-page/statistics-chart/statistics-chart.component';
 
 @Component({
   selector: 'ds-themed-site-statistics-page',
@@ -16,6 +17,7 @@ import { StatisticsTableComponent } from '../../../../../app/statistics-page/sta
   imports: [
     CommonModule,
     StatisticsTableComponent,
+    StatisticsChartComponent,
     ThemedLoadingComponent,
     TranslateModule,
     VarDirective,

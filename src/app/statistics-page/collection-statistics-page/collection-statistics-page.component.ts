@@ -19,6 +19,7 @@ import { StatisticsChartComponent } from '../statistics-chart/statistics-chart.c
   imports: [
     CommonModule,
     StatisticsTableComponent,
+    StatisticsChartComponent,
     ThemedLoadingComponent,
     TranslateModule,
     VarDirective,

@@ -65,7 +65,6 @@ export interface TableViewData {
   selector: 'ds-statistics-chart',
   templateUrl: './statistics-chart.component.html',
   styleUrls: ['./statistics-chart.component.scss'],
-  standalone: true,
   imports: [AsyncPipe, TitleCasePipe, TranslateModule, ThemedLoadingComponent, RouterLink],
 })
 

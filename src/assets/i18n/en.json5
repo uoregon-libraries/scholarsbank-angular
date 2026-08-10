@@ -7204,11 +7204,11 @@
 
   "info.contactus.accessibility": "Request accessibility accommodation",
 
-  "menu.section.browse_global_about": "About",
+  "menu.section.about": "About",
 
   "menu.section.browse_global_author_profiles": "Author Profiles",
 
-  "menu.section.browse_global_contactus": "Contact Us",
+  "menu.section.contactus": "Contact Us",
 
   "submission.sections.submit.progressbar.describe.licenses_uo": "Choose a license to attach to your work",
 

@@ -63,7 +63,7 @@ export class BrowseMenuProvider extends AbstractExpandableMenuProvider {
       getFirstSucceededRemoteData(),
       map((rd: RemoteData<PaginatedList<BrowseDefinition>>) => {
         return [
-          ...rd.payload.page.map((browseDef) => {
+          ...rd.payload.page.filter((browseDef) => (browseDef.id !== 'dateissued' && browseDef.id !== 'author' && browseDef.id !== 'title')).map((browseDef) => {
             return {
               visible: true,
               model: {
@@ -73,6 +73,14 @@ export class BrowseMenuProvider extends AbstractExpandableMenuProvider {
               },
             };
           }),
+          {
+            visible: true,
+            model: {
+              type: MenuItemType.LINK,
+              text: `menu.section.browse_global_by_community`,
+              link: `/community-list`,
+            },
+          },
           {
             visible: this.appConfig.geospatialMapViewer.enableBrowseMap,
             model: {

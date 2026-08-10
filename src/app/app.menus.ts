@@ -8,12 +8,13 @@
 import { buildMenuStructure } from './shared/menu/menu.structure';
 import { MenuID } from './shared/menu/menu-id.model';
 import { MenuRoute } from './shared/menu/menu-route.model';
+import { AboutMenuProvider } from './shared/menu/providers/about.menu';
 import { AccessControlMenuProvider } from './shared/menu/providers/access-control.menu';
 import { AdminSearchMenuProvider } from './shared/menu/providers/admin-search.menu';
 import { BrowseMenuProvider } from './shared/menu/providers/browse.menu';
 import { CoarNotifyMenuProvider } from './shared/menu/providers/coar-notify.menu';
 import { SubscribeMenuProvider } from './shared/menu/providers/comcol-subscribe.menu';
-import { CommunityListMenuProvider } from './shared/menu/providers/community-list.menu';
+import { ContactUsMenuProvider } from './shared/menu/providers/contactus.menu';
 import { CreateReportMenuProvider } from './shared/menu/providers/create-report.menu';
 import { CurationMenuProvider } from './shared/menu/providers/curation.menu';
 import { DSpaceObjectEditMenuProvider } from './shared/menu/providers/dso-edit.menu';
@@ -52,8 +53,9 @@ import { WorkflowMenuProvider } from './shared/menu/providers/workflow.menu';
  */
 export const MENUS = buildMenuStructure({
   [MenuID.PUBLIC]: [
-    CommunityListMenuProvider,
     BrowseMenuProvider,
+    AboutMenuProvider,
+    ContactUsMenuProvider,
     StatisticsMenuProvider,
   ],
   [MenuID.ADMIN]: [

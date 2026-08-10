@@ -53,4 +53,10 @@
     ::ng-deep a.nav-link:hover {
       color: var(--ds-navbar-link-color-hover);
     }
+
+    flex-grow: 1;
+  }
+
+  .navbar-collapsed {
+    align-self: center;
   }

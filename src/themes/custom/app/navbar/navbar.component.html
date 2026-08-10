@@ -1,4 +1,4 @@
-<div class="navbar-inner-container w-100 h-100" [class.container]="(isMobile$ | async) !== true">
+<div class="navbar-inner-container d-flex w-100 h-100" [class.container]="(isMobile$ | async) !== true">
   @if ((isMobile$ | async) && (isAuthenticated$ | async)) {
     <ds-user-menu [inExpandableNavbar]="true"></ds-user-menu>
   }

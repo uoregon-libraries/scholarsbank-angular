@@ -1,0 +1,20 @@
+<span>
+  All digital content submitted to Scholar's Bank shall comply with the 
+  <a href="https://digitalaccessibility.uoregon.edu/about/policies">UO Digital Accessibility Standard</a>
+  and World Wide Web Consortium (W3C) Web Content Accessibility Guidelines 
+  <a href="https://www.w3.org/TR/WCAG21/">(WCAG) 2.1 Level AA</a>.
+  For more information about creating accessible documents, please see 
+  <a href="https://digitalaccessibility.uoregon.edu/guidelines">https://digitalaccessibility.uoregon.edu/guidelines</a>.
+</span>
+<br> <br>
+
+<div id="accessibility-options" class="form-group">
+  <label class="form-label" *ngIf="formConfig.name" 
+    [innerHTML]="(formConfig.required && formConfig.name) ? (formConfig.name | translate) + ' *' : (formConfig.name | translate)">
+  </label>
+  <div *ngFor="let option of formConfig.options" class="row form-check ml-1">
+      <input type="radio" [(ngModel)]="selectedValue" class="form-check-input" 
+              name="{{formConfig.id}}" id="accessibilityOption_{{option.value}}" [value]="option.value" required>
+      <label class="form-check-label" for="accessibilityOption_{{option.value}}" [innerHTML]="option.label"></label>
+  </div>
+</div>

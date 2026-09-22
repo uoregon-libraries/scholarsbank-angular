@@ -8,6 +8,7 @@ import { SubmissionSectionCoarNotifyComponent } from './section-coar-notify/sect
 import { SectionsType } from './sections-type';
 import { SubmissionSectionSherpaPoliciesComponent } from './sherpa-policies/section-sherpa-policies.component';
 import { SubmissionSectionUploadComponent } from './upload/section-upload.component';
+import { SubmissionSectionAccessibilityAttestationComponent } from './accessibility-attestation/section-accessibility-attestation.component';
 
 const submissionSectionsMap = new Map();
 
@@ -20,6 +21,7 @@ submissionSectionsMap.set(SectionsType.SubmissionForm, SubmissionSectionFormComp
 submissionSectionsMap.set(SectionsType.Identifiers, SubmissionSectionIdentifiersComponent);
 submissionSectionsMap.set(SectionsType.CoarNotify, SubmissionSectionCoarNotifyComponent);
 submissionSectionsMap.set(SectionsType.Duplicates, SubmissionSectionDuplicatesComponent);
+submissionSectionsMap.set(SectionsType.AccessibilityAttestation, SubmissionSectionAccessibilityAttestationComponent);
 
 /**
  * @deprecated

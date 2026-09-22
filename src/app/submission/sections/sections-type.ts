@@ -9,5 +9,6 @@ export enum SectionsType {
   Identifiers = 'identifiers',
   Collection = 'collection',
   CoarNotify = 'coarnotify',
-  Duplicates = 'duplicates'
+  Duplicates = 'duplicates',
+  AccessibilityAttestation = "accessibility-attestation"
 }

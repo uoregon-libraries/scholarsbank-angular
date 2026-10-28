@@ -1,8 +1,5 @@
 import {
   AsyncPipe,
-  DatePipe,
-  NgFor,
-  NgIf,
   NgTemplateOutlet,
 } from '@angular/common';
 import {
@@ -14,12 +11,13 @@ import {
 import { RouterLink } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import {
+  Observable,
+  Subscription,
+} from 'rxjs';
 
 import { BtnDisabledDirective } from '../../shared/btn-disabled.directive';
 import { hasValue } from '../../shared/empty.util';
-import { PaginationComponent } from '../../shared/pagination/pagination.component';
-import { VarDirective } from '../../shared/utils/var.directive';
 import { ProcessStatus } from '../processes/process-status.model';
 import { ProcessBulkDeleteService } from './process-bulk-delete.service';
 import {
@@ -31,8 +29,14 @@ import { ProcessOverviewTableComponent } from './table/process-overview-table.co
 @Component({
   selector: 'ds-process-overview',
   templateUrl: './process-overview.component.html',
-  standalone: true,
-  imports: [NgIf, RouterLink, PaginationComponent, NgFor, VarDirective, AsyncPipe, DatePipe, TranslateModule, NgTemplateOutlet, ProcessOverviewTableComponent, BtnDisabledDirective],
+  imports: [
+    AsyncPipe,
+    BtnDisabledDirective,
+    NgTemplateOutlet,
+    ProcessOverviewTableComponent,
+    RouterLink,
+    TranslateModule,
+  ],
 })
 /**
  * Component displaying a list of all processes in a paginated table
@@ -47,6 +51,8 @@ export class ProcessOverviewComponent implements OnInit, OnDestroy {
 
   isProcessingSub: Subscription;
 
+  isProcessing$: Observable<boolean>;
+
   constructor(protected processOverviewService: ProcessOverviewService,
               protected modalService: NgbModal,
               public processBulkDeleteService: ProcessBulkDeleteService,
@@ -55,6 +61,7 @@ export class ProcessOverviewComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.processBulkDeleteService.clearAllProcesses();
+    this.isProcessing$ = this.processBulkDeleteService.isProcessing$();
   }
 
   ngOnDestroy(): void {

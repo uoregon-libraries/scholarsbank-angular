@@ -4,12 +4,12 @@
     }
 }
    
-#navbar-toggler .toggler-icon {
+.navbar-toggler .toggler-icon {
     background-image: none !important;
     line-height: 1.5;
 }
   
-#navbar-toggler {
+.navbar-toggler {
     color: var(--ds-header-icon-color);
   
     &:hover, &:focus {

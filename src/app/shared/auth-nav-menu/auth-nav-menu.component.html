@@ -1,6 +1,8 @@
+@let isAuthenticated = (isAuthenticated$ | async);
 @if ((isMobile$ | async) !== true) {
   <div class="navbar-nav me-auto" data-test="auth-nav">
-    @if ((isAuthenticated | async) !== true && (showAuth | async)) {
+    @let showAuth = (showAuth$ | async);
+    @if (isAuthenticated !== true && showAuth) {
       <div
         class="nav-item"
         (click)="$event.stopPropagation();">
@@ -25,7 +27,7 @@
         </div>
       </div>
     }
-    @if ((isAuthenticated | async) && (showAuth | async)) {
+    @if (isAuthenticated && showAuth) {
       <div class="nav-item">
         <div ngbDropdown #loggedInDrop="ngbDropdown" display="dynamic" placement="bottom-right" class="d-inline-block" @fadeInOut>
           <button
@@ -48,7 +50,7 @@
   </div>
 } @else {
   <div data-test="auth-nav">
-     @if ((isAuthenticated | async)) {
+    @if (isAuthenticated === true) {
       <a [attr.aria-label]="'nav.logout' |translate" [title]="'nav.logout' | translate" routerLink="/logout" routerLinkActive="active" class="logoutLink px-0" role="link" tabindex="0">
         <i class="fas fa-sign-out-alt fa-lg fa-fw"></i>
         <span class="sr-only">(current)</span>

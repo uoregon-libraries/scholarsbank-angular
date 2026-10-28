@@ -16,8 +16,14 @@ import { StatisticsChartComponent } from '../statistics-chart/statistics-chart.c
   selector: 'ds-base-collection-statistics-page',
   templateUrl: '../statistics-page/statistics-page.component.html',
   styleUrls: ['./collection-statistics-page.component.scss'],
-  standalone: true,
-  imports: [CommonModule, VarDirective, ThemedLoadingComponent, StatisticsTableComponent, StatisticsChartComponent, TranslateModule],
+  imports: [
+    CommonModule,
+    StatisticsTableComponent,
+    StatisticsChartComponent,
+    ThemedLoadingComponent,
+    TranslateModule,
+    VarDirective,
+  ],
 })
 export class CollectionStatisticsPageComponent extends StatisticsPageDirective<Collection> {
 

@@ -1,8 +1,6 @@
 import {
   AsyncPipe,
   NgClass,
-  NgFor,
-  NgIf,
 } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -20,12 +18,12 @@ import {
 import {
   NgbDropdownModule,
   NgbPaginationModule,
-  NgbTooltipModule,
+  NgbTooltip,
 } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import {
   Observable,
-  of as observableOf,
+  of,
   Subscription,
 } from 'rxjs';
 import {
@@ -70,8 +68,17 @@ interface PaginationDetails {
   templateUrl: 'pagination.component.html',
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.Emulated,
-  standalone: true,
-  imports: [NgIf, NgbDropdownModule, NgFor, NgClass, RSSComponent, NgbPaginationModule, NgbTooltipModule, AsyncPipe, TranslateModule, EnumKeysPipe, BtnDisabledDirective],
+  imports: [
+    AsyncPipe,
+    BtnDisabledDirective,
+    EnumKeysPipe,
+    NgbDropdownModule,
+    NgbPaginationModule,
+    NgbTooltip,
+    NgClass,
+    RSSComponent,
+    TranslateModule,
+  ],
 })
 export class PaginationComponent implements OnChanges, OnDestroy, OnInit {
   /**
@@ -171,6 +178,13 @@ export class PaginationComponent implements OnChanges, OnDestroy, OnInit {
   @Input() public retainScrollPosition = false;
 
   /**
+   * Options for showing or hiding the RSS syndication feed. This is useful for e.g. top-level community lists
+   * or other lists where an RSS feed doesn't make sense, but uses the same components as recent items or search result
+   * lists.
+   */
+  @Input() public showRSS: SortOptions | boolean = false;
+
+  /**
    * Current page.
    */
   public currentPage$: Observable<number>;
@@ -222,6 +236,11 @@ export class PaginationComponent implements OnChanges, OnDestroy, OnInit {
   public showingDetails$: Observable<PaginationDetails>;
 
   /**
+   * Whether the current pagination should show a bottom pages
+   */
+  showBottomPager$: Observable<boolean>;
+
+  /**
    * Array to track all subscriptions and unsubscribe them onDestroy
    * @type {Array}
    */
@@ -250,7 +269,7 @@ export class PaginationComponent implements OnChanges, OnDestroy, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.collectionSize.currentValue !== changes.collectionSize.previousValue) {
+    if (hasValue(changes.collectionSize)) {
       this.showingDetails$ = this.getShowingDetails(this.collectionSize);
     }
   }
@@ -268,7 +287,6 @@ export class PaginationComponent implements OnChanges, OnDestroy, OnInit {
    * Initializes all default variables
    */
   private initializeConfig() {
-    // Set initial values
     this.id = this.paginationOptions.id || null;
     this.pageSizeOptions = this.paginationOptions.pageSizeOptions;
     this.currentPage$ = this.paginationService.getCurrentPagination(this.id, this.paginationOptions).pipe(
@@ -290,6 +308,7 @@ export class PaginationComponent implements OnChanges, OnDestroy, OnInit {
     this.sortField$ = this.paginationService.getCurrentSort(this.id, sortOptions).pipe(
       map((currentSort) => currentSort.field),
     );
+    this.showBottomPager$ = this.shouldShowBottomPager;
   }
 
   constructor(
@@ -351,7 +370,7 @@ export class PaginationComponent implements OnChanges, OnDestroy, OnInit {
    * Method to get pagination details of the current viewed page.
    */
   public getShowingDetails(collectionSize: number): Observable<PaginationDetails> {
-    return observableOf(collectionSize).pipe(
+    return of(collectionSize).pipe(
       hasValueOperator(),
       switchMap(() => this.paginationService.getCurrentPagination(this.id, this.paginationOptions)),
       map((currentPaginationOptions) => {
@@ -436,6 +455,21 @@ export class PaginationComponent implements OnChanges, OnDestroy, OnInit {
     this.paginationService.getCurrentPagination(this.id, this.paginationOptions).pipe(take(1)).subscribe((currentPaginationOptions) => {
       this.updateParams({ page: (currentPaginationOptions.currentPage + value) });
     });
+  }
+
+  /**
+   * Get the sort options to use for the RSS feed. Defaults to the sort options used for this pagination component
+   * so it matches the search/browse context, but also allows more flexibility if, for example a top-level community
+   * list is displayed in "title asc" order, but the RSS feed should default to an item list of "date desc" order.
+   * If the SortOptions are null, incomplete or invalid, the pagination sortOptions will be used instead.
+   */
+  get rssSortOptions() {
+    if (this.showRSS !== false && this.showRSS instanceof SortOptions
+      && this.showRSS.direction !== null
+      && this.showRSS.field !== null) {
+      return this.showRSS;
+    }
+    return this.sortOptions;
   }
 
 }

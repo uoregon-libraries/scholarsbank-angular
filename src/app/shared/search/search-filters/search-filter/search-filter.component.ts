@@ -2,7 +2,6 @@ import {
   AsyncPipe,
   LowerCasePipe,
   NgClass,
-  NgIf,
 } from '@angular/common';
 import {
   Component,
@@ -21,12 +20,11 @@ import {
   filter,
   map,
   Observable,
-  of as observableOf,
+  of,
   startWith,
   Subscription,
   switchMap,
 } from 'rxjs';
-import { take } from 'rxjs/operators';
 
 import { RemoteData } from '../../../../core/data/remote-data';
 import { SearchService } from '../../../../core/shared/search/search.service';
@@ -52,8 +50,14 @@ import { SearchFacetFilterWrapperComponent } from './search-facet-filter-wrapper
   styleUrls: ['./search-filter.component.scss'],
   templateUrl: './search-filter.component.html',
   animations: [slide],
-  standalone: true,
-  imports: [NgIf, NgClass, SearchFacetFilterWrapperComponent, AsyncPipe, LowerCasePipe, TranslateModule, BrowserOnlyPipe],
+  imports: [
+    AsyncPipe,
+    BrowserOnlyPipe,
+    LowerCasePipe,
+    NgClass,
+    SearchFacetFilterWrapperComponent,
+    TranslateModule,
+  ],
 })
 
 /**
@@ -146,7 +150,7 @@ export class SearchFilterComponent implements OnInit, OnChanges, OnDestroy {
           this.filterService.expand(this.filter.name);
         }
       }),
-      this.getIsActive().pipe(take(1)).subscribe(() => {
+      this.getIsActive().subscribe(() => {
         this.isVisibilityComputed.emit(true);
       }),
     );
@@ -249,7 +253,7 @@ export class SearchFilterComponent implements OnInit, OnChanges, OnDestroy {
     ]).pipe(
       switchMap(([selectedValues, options, scope]: [AppliedFilter[], SearchOptions, string]) => {
         if (isNotEmpty(selectedValues.filter((appliedFilter: AppliedFilter) => FACET_OPERATORS.includes(appliedFilter.operator)))) {
-          return observableOf(true);
+          return of(true);
         } else {
           if (hasValue(scope)) {
             options.scope = scope;

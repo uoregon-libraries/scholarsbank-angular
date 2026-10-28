@@ -1,8 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, OnDestroy, Inject } from '@angular/core';
-import {
-  AsyncPipe,
-  NgFor,
-} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 import { BehaviorSubject, Observable, combineLatest as observableCombineLatest, of, Subscription } from 'rxjs';
 
@@ -32,7 +29,7 @@ interface Item {
   styleUrls: ['./top-level-community-group.component.scss'],
   templateUrl: './top-level-community-group.component.html',
   standalone: true,
-  imports: [AsyncPipe, NgFor],
+  imports: [AsyncPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeInOut],
   

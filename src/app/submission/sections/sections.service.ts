@@ -125,7 +125,7 @@ export class SectionsService {
         });
       });
 
-      // Itereate over the previous error list
+      // Iterate over the previous error list
       prevErrors.forEach((error: SubmissionSectionError) => {
         const errorPaths: SectionErrorPath[] = parseSectionErrorPaths(error.path);
 
@@ -541,7 +541,7 @@ export class SectionsService {
    * @param sectionType
    */
   public getIsInformational(sectionType: SectionsType): boolean {
-    if (sectionType === SectionsType.SherpaPolicies) {
+    if (sectionType === SectionsType.OpfPolicies) {
       return true;
     } else {
       return false;

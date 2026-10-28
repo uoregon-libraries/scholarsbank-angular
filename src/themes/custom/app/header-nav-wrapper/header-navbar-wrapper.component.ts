@@ -1,8 +1,4 @@
-import {
-  AsyncPipe,
-  NgClass,
-  NgIf,
-} from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -11,17 +7,19 @@ import { HeaderNavbarWrapperComponent as BaseComponent } from '../../../../app/h
 import { ThemedNavbarComponent } from '../../../../app/navbar/themed-navbar.component';
 import { slideMobileNav } from '../../../../app/shared/animations/slide';
 
-/**
- * This component represents a wrapper for the horizontal navbar and the header
- */
 @Component({
   selector: 'ds-themed-header-navbar-wrapper',
   styleUrls: ['./header-navbar-wrapper.component.scss'],
   // styleUrls: ['../../../../app/header-nav-wrapper/header-navbar-wrapper.component.scss'],
   templateUrl: './header-navbar-wrapper.component.html',
   // templateUrl: '../../../../app/header-nav-wrapper/header-navbar-wrapper.component.html',
-  standalone: true,
-  imports: [NgClass, ThemedHeaderComponent, ThemedNavbarComponent, AsyncPipe,  TranslateModule, NgIf],
+  imports: [
+    AsyncPipe,
+    NgClass,
+    ThemedHeaderComponent,
+    ThemedNavbarComponent,
+    TranslateModule,
+  ],
   animations: [slideMobileNav],
 })
 export class HeaderNavbarWrapperComponent extends BaseComponent {

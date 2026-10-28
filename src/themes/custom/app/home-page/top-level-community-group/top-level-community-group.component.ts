@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {
   AsyncPipe,
-  NgFor,
 } from '@angular/common';
 import { TopLevelCommunityGroupComponent as BaseComponent } from '../../../../../app/home-page/top-level-community-group/top-level-community-group.component';
 
@@ -12,7 +11,7 @@ import { TopLevelCommunityGroupComponent as BaseComponent } from '../../../../..
   // templateUrl: './top-level-community-group.component.html'
   templateUrl: '../../../../../app/home-page/top-level-community-group/top-level-community-group.component.html',
   standalone: true,
-  imports: [AsyncPipe, NgFor],
+  imports: [AsyncPipe],
 })
 
 export class TopLevelCommunityGroupComponent extends BaseComponent {}

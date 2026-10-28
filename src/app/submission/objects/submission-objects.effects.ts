@@ -12,7 +12,7 @@ import union from 'lodash/union';
 import {
   from as observableFrom,
   Observable,
-  of as observableOf,
+  of,
 } from 'rxjs';
 import {
   catchError,
@@ -97,11 +97,14 @@ export class SubmissionObjectEffects {
         const sectionId = selfLink.substr(selfLink.lastIndexOf('/') + 1);
         const config = sectionDefinition._links.config ? (sectionDefinition._links.config.href || sectionDefinition._links.config) : '';
         // A section is enabled if it is mandatory or contains data in its section payload
-        // except for detect duplicate steps which will be hidden with no data unless overridden in config, even if mandatory
-        const enabled = (sectionDefinition.mandatory && (sectionDefinition.sectionType !== SectionsType.Duplicates))
-          || (isNotEmpty(action.payload.sections) && action.payload.sections.hasOwnProperty(sectionId)
-            && (sectionDefinition.sectionType === SectionsType.Duplicates && (alwaysDisplayDuplicates() || isNotEmpty((action.payload.sections[sectionId] as WorkspaceitemSectionDuplicatesObject).potentialDuplicates)))
-          );
+        let enabled = (sectionDefinition.mandatory || (isNotEmpty(action.payload.sections) && action.payload.sections.hasOwnProperty(sectionId)));
+
+        // Duplicates will ignore mandatory and display only when "always display" is set or there is data to show
+        if (sectionDefinition.sectionType === SectionsType.Duplicates) {
+          const duplicatesSection = action.payload.sections?.[sectionId] as WorkspaceitemSectionDuplicatesObject | undefined;
+          enabled = (alwaysDisplayDuplicates() || isNotEmpty(duplicatesSection?.potentialDuplicates));
+        }
+
         let sectionData;
         if (sectionDefinition.sectionType !== SectionsType.SubmissionForm) {
           sectionData = (isNotUndefined(action.payload.sections) && isNotUndefined(action.payload.sections[sectionId])) ? action.payload.sections[sectionId] : Object.create(null);
@@ -161,7 +164,7 @@ export class SubmissionObjectEffects {
         action.payload.submissionId,
         'sections').pipe(
         map((response: SubmissionObject[]) => new SaveSubmissionFormSuccessAction(action.payload.submissionId, response, action.payload.isManual, action.payload.isManual)),
-        catchError(() => observableOf(new SaveSubmissionFormErrorAction(action.payload.submissionId))));
+        catchError(() => of(new SaveSubmissionFormErrorAction(action.payload.submissionId))));
     })));
 
   /**
@@ -175,7 +178,7 @@ export class SubmissionObjectEffects {
         action.payload.submissionId,
         'sections').pipe(
         map((response: SubmissionObject[]) => new SaveForLaterSubmissionFormSuccessAction(action.payload.submissionId, response)),
-        catchError(() => observableOf(new SaveSubmissionFormErrorAction(action.payload.submissionId))));
+        catchError(() => of(new SaveSubmissionFormErrorAction(action.payload.submissionId))));
     })));
 
   /**
@@ -216,7 +219,7 @@ export class SubmissionObjectEffects {
         'sections',
         action.payload.sectionId).pipe(
         map((response: SubmissionObject[]) => new SaveSubmissionSectionFormSuccessAction(action.payload.submissionId, response)),
-        catchError(() => observableOf(new SaveSubmissionSectionFormErrorAction(action.payload.submissionId))));
+        catchError(() => of(new SaveSubmissionSectionFormErrorAction(action.payload.submissionId))));
     })));
 
   /**
@@ -260,7 +263,7 @@ export class SubmissionObjectEffects {
             return new SaveSubmissionFormSuccessAction(action.payload.submissionId, response, false, true);
           }
         }),
-        catchError(() => observableOf(new SaveSubmissionFormErrorAction(action.payload.submissionId))));
+        catchError(() => of(new SaveSubmissionFormErrorAction(action.payload.submissionId))));
     })));
 
   /**
@@ -272,7 +275,7 @@ export class SubmissionObjectEffects {
     switchMap(([action, state]: [DepositSubmissionAction, any]) => {
       return this.submissionService.depositSubmission(state.submission.objects[action.payload.submissionId].selfUrl).pipe(
         map(() => new DepositSubmissionSuccessAction(action.payload.submissionId)),
-        catchError((error: unknown) => observableOf(new DepositSubmissionErrorAction(action.payload.submissionId))));
+        catchError((error: unknown) => of(new DepositSubmissionErrorAction(action.payload.submissionId))));
     })));
 
   /**
@@ -307,7 +310,7 @@ export class SubmissionObjectEffects {
     switchMap((action: DepositSubmissionAction) => {
       return this.submissionService.discardSubmission(action.payload.submissionId).pipe(
         map(() => new DiscardSubmissionSuccessAction(action.payload.submissionId)),
-        catchError(() => observableOf(new DiscardSubmissionErrorAction(action.payload.submissionId))));
+        catchError(() => of(new DiscardSubmissionErrorAction(action.payload.submissionId))));
     })));
 
   /**
@@ -338,7 +341,7 @@ export class SubmissionObjectEffects {
           map((metadata: any) => new UpdateSectionDataAction(action.payload.submissionId, action.payload.sectionId, metadata, action.payload.errorsToShow, action.payload.serverValidationErrors, action.payload.metadata)),
         );
       } else {
-        return observableOf(new UpdateSectionDataSuccessAction());
+        return of(new UpdateSectionDataSuccessAction());
       }
     }),
   ));
@@ -463,11 +466,11 @@ export class SubmissionObjectEffects {
           mappedActions.push(new UpdateSectionDataAction(submissionId, sectionId, sectionData, filteredErrors, sectionErrors));
         }
 
-        // Sherpa Policies section needs to be updated when the rest response section is empty
-        const sherpaPoliciesSectionId = findKey(currentState.sections, (section) => section.sectionType === SectionsType.SherpaPolicies);
-        if (isNotUndefined(sherpaPoliciesSectionId) && isNotEmpty(currentState.sections[sherpaPoliciesSectionId]?.data)
-          && isEmpty(sections[sherpaPoliciesSectionId])) {
-          mappedActions.push(new UpdateSectionDataAction(submissionId, sherpaPoliciesSectionId, null, [], []));
+        // Opf Policies section needs to be updated when the rest response section is empty
+        const opfPoliciesSectionId = findKey(currentState.sections, (section) => section.sectionType === SectionsType.OpfPolicies);
+        if (isNotUndefined(opfPoliciesSectionId) && isNotEmpty(currentState.sections[opfPoliciesSectionId]?.data)
+          && isEmpty(sections[opfPoliciesSectionId])) {
+          mappedActions.push(new UpdateSectionDataAction(submissionId, opfPoliciesSectionId, null, [], []));
         }
 
         // When Duplicate Detection step is enabled, add it only if there are duplicates in the response section data

@@ -1,9 +1,4 @@
-import {
-  AsyncPipe,
-  NgClass,
-  NgIf,
-  NgTemplateOutlet,
-} from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import {
   Component,
   Inject,
@@ -19,11 +14,9 @@ import {
 } from 'src/config/app-config.interface';
 
 import { Site } from '../core/shared/site.model';
-import { SuggestionsPopupComponent } from '../notifications/suggestions-popup/suggestions-popup.component';
+import { SuggestionsPopupComponent } from '../notifications/suggestions/popup/suggestions-popup.component';
 import { ThemedConfigurationSearchPageComponent } from '../search-page/themed-configuration-search-page.component';
 import { ThemedSearchFormComponent } from '../shared/search-form/themed-search-form.component';
-import { PageWithSidebarComponent } from '../shared/sidebar/page-with-sidebar.component';
-import { ViewTrackerComponent } from '../statistics/angulartics/dspace/view-tracker.component';
 import { HomeCoarComponent } from './home-coar/home-coar.component';
 import { ThemedHomeNewsComponent } from './home-news/themed-home-news.component';
 import { RecentItemListComponent } from './recent-item-list/recent-item-list.component';
@@ -34,8 +27,17 @@ import { ThemedTopLevelCommunityGroupComponent } from './top-level-community-gro
   selector: 'ds-base-home-page',
   styleUrls: ['./home-page.component.scss'],
   templateUrl: './home-page.component.html',
-  standalone: true,
-  imports: [ThemedHomeNewsComponent, NgTemplateOutlet, NgIf, ViewTrackerComponent, ThemedSearchFormComponent, ThemedTopLevelCommunityListComponent, ThemedTopLevelCommunityGroupComponent, RecentItemListComponent, AsyncPipe, TranslateModule, NgClass, SuggestionsPopupComponent, ThemedConfigurationSearchPageComponent, PageWithSidebarComponent, HomeCoarComponent],
+  imports: [
+    HomeCoarComponent,
+    NgTemplateOutlet,
+    RecentItemListComponent,
+    SuggestionsPopupComponent,
+    ThemedConfigurationSearchPageComponent,
+    ThemedHomeNewsComponent,
+    ThemedSearchFormComponent,
+    ThemedTopLevelCommunityListComponent,
+    TranslateModule,
+  ],
 })
 export class HomePageComponent implements OnInit {
 

@@ -1,8 +1,6 @@
 import {
   AsyncPipe,
   NgComponentOutlet,
-  NgFor,
-  NgIf,
 } from '@angular/common';
 import {
   AfterViewChecked,
@@ -35,13 +33,10 @@ import { NavbarSectionComponent } from '../../../../../app/navbar/navbar-section
   // styleUrls: ['./expandable-navbar-section.component.scss'],
   styleUrls: ['../../../../../app/navbar/expandable-navbar-section/expandable-navbar-section.component.scss'],
   animations: [slide],
-  standalone: true,
   imports: [
     AsyncPipe,
     HoverOutsideDirective,
     NgComponentOutlet,
-    NgFor,
-    NgIf,
     RouterLinkActive,
     RouterModule,
   ],

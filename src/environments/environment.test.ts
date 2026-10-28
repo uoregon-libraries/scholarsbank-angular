@@ -14,7 +14,25 @@ export const environment: BuildConfig = {
     inlineCriticalCss: false,
     transferState: true,
     replaceRestUrl: false,
-    paths: [ '/home', '/items/', '/entities/', '/collections/', '/communities/', '/bitstream/', '/bitstreams/', '/handle/', '/reload/' ],
+    excludePathPatterns: [
+      {
+        pattern: '^/communities/[a-f0-9-]{36}/browse(/.*)?$',
+        flag: 'i',
+      },
+      {
+        pattern: '^/collections/[a-f0-9-]{36}/browse(/.*)?$',
+        flag: 'i',
+      },
+      { pattern: '^/browse/' },
+      { pattern: '^/search' },
+      { pattern: '^/community-list$' },
+      { pattern: '^/statistics/?' },
+      { pattern: '^/admin/' },
+      { pattern: '^/processes/?' },
+      { pattern: '^/notifications/' },
+      { pattern: '^/access-control/' },
+      { pattern: '^/health$' },
+    ],
     enableSearchComponent: false,
     enableBrowseComponent: false,
   },
@@ -42,7 +60,7 @@ export const environment: BuildConfig = {
     port: 443,
     // NOTE: Space is capitalized because 'namespace' is a reserved string in TypeScript
     nameSpace: '/api',
-    baseUrl: 'https://rest.com/api',
+    baseUrl: 'https://rest.com/server',
   },
 
   actuators: {
@@ -57,6 +75,10 @@ export const environment: BuildConfig = {
     },
     // msToLive: 1000, // 15 minutes
     control: 'max-age=60',
+    // These static files should not be cached (paths relative to dist/browser, including the leading slash)
+    noCacheFiles: [
+      '/index.html',  // see https://web.dev/articles/http-cache#unversioned-urls
+    ],
     autoSync: {
       defaultTime: 0,
       maxBufferSize: 100,
@@ -182,8 +204,8 @@ export const environment: BuildConfig = {
   // NOTE: will log all redux actions and transfers in console
   debug: false,
 
-  // Default Language in which the UI will be rendered if the user's browser language is not an active language
-  defaultLanguage: 'en',
+  // Fallback language in which the UI will be rendered if the user's browser language is not an active language
+  fallbackLanguage: 'en',
 
   // Languages. DSpace Angular holds a message catalog for each of the following languages.
   // When set to active, users will be able to switch to the use of this language in the user interface.
@@ -269,14 +291,18 @@ export const environment: BuildConfig = {
       // Rounded to the nearest size in the list of selectable sizes on the
       // settings menu.  See pageSizeOptions in 'pagination-component-options.model.ts'.
       pageSize: 5,
+      // Show the bitstream access status label
+      showAccessStatuses: false,
     },
   },
   community: {
+    defaultBrowseTab: 'search',
     searchSection: {
       showSidebar: true,
     },
   },
   collection: {
+    defaultBrowseTab: 'search',
     searchSection: {
       showSidebar: true,
     },
@@ -431,5 +457,28 @@ export const environment: BuildConfig = {
   liveRegion: {
     messageTimeOutDurationMs: 30000,
     isVisible: false,
+  },
+
+  // Leaflet tile providers and other configurable attributes
+  geospatialMapViewer: {
+    spatialMetadataFields: [
+      'dcterms.spatial',
+    ],
+    spatialFacetDiscoveryConfiguration: 'geospatial',
+    spatialPointFilterName: 'point',
+    enableItemPageFields: true,
+    enableSearchViewMode: true,
+    enableBrowseMap: true,
+    tileProviders: [
+      'OpenStreetMap.Mapnik',
+    ],
+    defaultCentrePoint: {
+      lat: 41.015137,
+      lng: 28.979530,
+    },
+  },
+
+  accessibility: {
+    cookieExpirationDuration: 7,
   },
 };

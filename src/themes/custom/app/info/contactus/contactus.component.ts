@@ -1,5 +1,15 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import {
+  AfterViewInit,
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  Renderer2,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ds-contactus',
@@ -14,11 +24,24 @@ import { ActivatedRoute } from '@angular/router';
 /**
  * Component displaying the Contact info
  */
-export class ContactusComponent implements OnInit, AfterViewInit {
+export class ContactusComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  constructor(private renderer: Renderer2, private route: ActivatedRoute) { }
+  private sub: Subscription;
+  private intervals: ReturnType<typeof setInterval>[] = [];
+
+  constructor(
+    private renderer: Renderer2,
+    private route: ActivatedRoute,
+    @Inject(PLATFORM_ID) private platformId: object,
+  ) { }
 
   ngOnInit() {
+    // The LibAnswers widget is browser-only: SSR has no document, and a
+    // script tag in the SSR'd HTML would get added again during hydration
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     // Add LibAnswers script to inject contact form
     const script = this.renderer.createElement('script');
     script.src = `https://uoregon.libanswers.com/1.0/widgets/20077`;
@@ -26,8 +49,14 @@ export class ContactusComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    // On the server, waitForElement's polling would throw (no document) and
+    // never stop
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     // Add item information to additional details field if reporting an a11y issue
-    this.route.queryParamMap.subscribe((paramMap) => {
+    this.sub = this.route.queryParamMap.subscribe((paramMap) => {
       const titleValue = paramMap.get('itemTitle');
       const urlValue = paramMap.get('itemURL');
 
@@ -47,6 +76,12 @@ export class ContactusComponent implements OnInit, AfterViewInit {
     });
   };
 
+  ngOnDestroy(): void {
+    // Stop polling if the user leaves before the widget renders
+    this.sub?.unsubscribe();
+    this.intervals.forEach((interval) => clearInterval(interval));
+  }
+
   // Wait for the specified element to exist
   waitForElement(selector, callback) {
     const interval = setInterval(() => {
@@ -56,5 +91,6 @@ export class ContactusComponent implements OnInit, AfterViewInit {
         callback(element);
       }
     }, 150);
+    this.intervals.push(interval);
   }
 }

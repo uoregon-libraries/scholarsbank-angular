@@ -1,5 +1,3 @@
-import 'altcha';
-
 import {
   HttpClient,
   provideHttpClient,
